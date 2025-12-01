@@ -1,0 +1,334 @@
+{
+    "cartas": {
+        "assets/decks/blue_deck_expansion_1": [
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['1', 'HP', '2450', 'ATK', '2950', 'DEF', '1650', '3.png']",
+                "atk": 2950,
+                "def": 1650,
+                "hp": 2450,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\1_HP_2450_ATK_2950_DEF_1650_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.10', 'HP', '2300', 'ATK', '2300', 'DEF', '1200', '2.png']",
+                "atk": 2300,
+                "def": 1200,
+                "hp": 2300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.10_HP_2300_ATK_2300_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.11', 'HP', '2400', 'ATK', '2250', 'DEF', '1150', '2.png']",
+                "atk": 2250,
+                "def": 1150,
+                "hp": 2400,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.11_HP_2400_ATK_2250_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.12', 'HP', '2100', 'ATK', '2150', 'DEF', '1150', '2.png']",
+                "atk": 2150,
+                "def": 1150,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.12_HP_2100_ATK_2150_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.13', 'HP', '2100', 'ATK', '2100', 'DEF', '1150', '2.png']",
+                "atk": 2100,
+                "def": 1150,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.13_HP_2100_ATK_2100_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.14', 'HP', '2100', 'ATK', '2050', 'DEF', '1150', '2.png']",
+                "atk": 2050,
+                "def": 1150,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.14_HP_2100_ATK_2050_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.15', 'HP', '2100', 'ATK', '2050', 'DEF', '1150', '2.png']",
+                "atk": 2050,
+                "def": 1150,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.15_HP_2100_ATK_2050_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.16', 'HP', '2160', 'ATK', '2010', 'DEF', '1160', '2.png']",
+                "atk": 2010,
+                "def": 1160,
+                "hp": 2160,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.16_HP_2160_ATK_2010_DEF_1160_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.17', 'HP', '1900', 'ATK', '2000', 'DEF', '1000', '3.png']",
+                "atk": 2000,
+                "def": 1000,
+                "hp": 1900,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.17_HP_1900_ATK_2000_DEF_1000_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.18.0', 'HP', '2100', 'ATK', '2000', 'DEF', '1200', '2.png']",
+                "atk": 2000,
+                "def": 1200,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.18.0_HP_2100_ATK_2000_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.18.1', 'HP', '2100', 'ATK', '2000', 'DEF', '1200', '2.png']",
+                "atk": 2000,
+                "def": 1200,
+                "hp": 2100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.18.1_HP_2100_ATK_2000_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.19', 'HP', '1900', 'ATK', '2000', 'DEF', '1150', '2.png']",
+                "atk": 2000,
+                "def": 1150,
+                "hp": 1900,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.19_HP_1900_ATK_2000_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.1', 'HP', '2350', 'ATK', '2350', 'DEF', '1300', '3.png']",
+                "atk": 2350,
+                "def": 1300,
+                "hp": 2350,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.1_HP_2350_ATK_2350_DEF_1300_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.20', 'HP', '2000', 'ATK', '2100', 'DEF', '1150', '2.png']",
+                "atk": 2100,
+                "def": 1150,
+                "hp": 2000,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.20_HP_2000_ATK_2100_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.2', 'HP', '2350', 'ATK', '2350', 'DEF', '1300', '2.png']",
+                "atk": 2350,
+                "def": 1300,
+                "hp": 2350,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.2_HP_2350_ATK_2350_DEF_1300_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.3.1', 'HP', '2350', 'ATK', '2350', 'DEF', '1300', '2.png']",
+                "atk": 2350,
+                "def": 1300,
+                "hp": 2350,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.3.1_HP_2350_ATK_2350_DEF_1300_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.3', 'HP', '2350', 'ATK', '2350', 'DEF', '1300', '2.png']",
+                "atk": 2350,
+                "def": 1300,
+                "hp": 2350,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.3_HP_2350_ATK_2350_DEF_1300_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.4', 'HP', '2200', 'ATK', '2300', 'DEF', '1150', '3.png']",
+                "atk": 2300,
+                "def": 1150,
+                "hp": 2200,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.4_HP_2200_ATK_2300_DEF_1150_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.5', 'HP', '2200', 'ATK', '2300', 'DEF', '1150', '3.png']",
+                "atk": 2300,
+                "def": 1150,
+                "hp": 2200,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.5_HP_2200_ATK_2300_DEF_1150_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.6', 'HP', '2200', 'ATK', '2300', 'DEF', '1150', '2.png']",
+                "atk": 2300,
+                "def": 1150,
+                "hp": 2200,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.6_HP_2200_ATK_2300_DEF_1150_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.7', 'HP', '2200', 'ATK', '2300', 'DEF', '1150', '3.png']",
+                "atk": 2300,
+                "def": 1150,
+                "hp": 2200,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.7_HP_2200_ATK_2300_DEF_1150_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.8.1', 'HP', '2300', 'ATK', '2300', 'DEF', '1200', '2.png']",
+                "atk": 2300,
+                "def": 1200,
+                "hp": 2300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.8.1_HP_2300_ATK_2300_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.8', 'HP', '2300', 'ATK', '2300', 'DEF', '1200', '2.png']",
+                "atk": 2300,
+                "def": 1200,
+                "hp": 2300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.8_HP_2300_ATK_2300_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4.9', 'HP', '2300', 'ATK', '2300', 'DEF', '1200', '2.png']",
+                "atk": 2300,
+                "def": 1200,
+                "hp": 2300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4.9_HP_2300_ATK_2300_DEF_1200_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['4', 'HP', '2400', 'ATK', '2400', 'DEF', '1400', '3.png']",
+                "atk": 2400,
+                "def": 1400,
+                "hp": 2400,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\4_HP_2400_ATK_2400_DEF_1400_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.10', 'HP', '1500', 'ATK', '1400', 'DEF', '1050', '3.png']",
+                "atk": 1400,
+                "def": 1050,
+                "hp": 1500,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.10_HP_1500_ATK_1400_DEF_1050_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.11', 'HP', '1500', 'ATK', '1400', 'DEF', '1050', '2.png']",
+                "atk": 1400,
+                "def": 1050,
+                "hp": 1500,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.11_HP_1500_ATK_1400_DEF_1050_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.12', 'HP', '1700', 'ATK', '1200', 'DEF', '1000', '2.png']",
+                "atk": 1200,
+                "def": 1000,
+                "hp": 1700,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.12_HP_1700_ATK_1200_DEF_1000_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.15.1', 'HP', '1100', 'ATK', '1100', 'DEF', '800', '2.png']",
+                "atk": 1100,
+                "def": 800,
+                "hp": 1100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.15.1_HP_1100_ATK_1100_DEF_800_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.15.2', 'HP', '1100', 'ATK', '1100', 'DEF', '800', '2.png']",
+                "atk": 1100,
+                "def": 800,
+                "hp": 1100,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.15.2_HP_1100_ATK_1100_DEF_800_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.15.3', 'HP', '1300', 'ATK', '1100', 'DEF', '700', '2.png']",
+                "atk": 1100,
+                "def": 700,
+                "hp": 1300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.15.3_HP_1300_ATK_1100_DEF_700_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.16', 'HP', '1300', 'ATK', '1050', 'DEF', '650', '2.png']",
+                "atk": 1050,
+                "def": 650,
+                "hp": 1300,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.16_HP_1300_ATK_1050_DEF_650_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.1', 'HP', '2000', 'ATK', '2000', 'DEF', '1100', '2.png']",
+                "atk": 2000,
+                "def": 1100,
+                "hp": 2000,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.1_HP_2000_ATK_2000_DEF_1100_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.2', 'HP', '2000', 'ATK', '2000', 'DEF', '1100', '3.png']",
+                "atk": 2000,
+                "def": 1100,
+                "hp": 2000,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.2_HP_2000_ATK_2000_DEF_1100_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.3', 'HP', '2000', 'ATK', '2000', 'DEF', '1100', '2.png']",
+                "atk": 2000,
+                "def": 1100,
+                "hp": 2000,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.3_HP_2000_ATK_2000_DEF_1100_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.4', 'HP', '2000', 'ATK', '2000', 'DEF', '1100', '2.png']",
+                "atk": 2000,
+                "def": 1100,
+                "hp": 2000,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.4_HP_2000_ATK_2000_DEF_1100_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.7', 'HP', '1800', 'ATK', '1950', 'DEF', '1200', '3.png']",
+                "atk": 1950,
+                "def": 1200,
+                "hp": 1800,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.7_HP_1800_ATK_1950_DEF_1200_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.8.1', 'HP', '1600', 'ATK', '1200', 'DEF', '950', '2.png']",
+                "atk": 1200,
+                "def": 950,
+                "hp": 1600,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.8.1_HP_1600_ATK_1200_DEF_950_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.8.2', 'HP', '1600', 'ATK', '1900', 'DEF', '1000', '2.png']",
+                "atk": 1900,
+                "def": 1000,
+                "hp": 1600,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.8.2_HP_1600_ATK_1900_DEF_1000_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.8', 'HP', '1600', 'ATK', '1900', 'DEF', '1000', '3.png']",
+                "atk": 1900,
+                "def": 1000,
+                "hp": 1600,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.8_HP_1600_ATK_1900_DEF_1000_3.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            },
+            {
+                "id": "assets/decks/blue_deck_expansion_1-['5.9', 'HP', '1500', 'ATK', '1400', 'DEF', '1050', '2.png']",
+                "atk": 1400,
+                "def": 1050,
+                "hp": 1500,
+                "path_imagen_frente": "assets/decks/blue_deck_expansion_1\\5.9_HP_1500_ATK_1400_DEF_1050_2.png",
+                "path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
+            }
+        ]
+    }
+}

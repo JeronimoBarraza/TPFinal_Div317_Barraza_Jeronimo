@@ -16,8 +16,7 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
     form['game_started'] = False
     form['enemy'] = None
 
-
-    form['jugador'] = datos_juego.get('jugador')
+    form['jugador'] = datos_juego.get('player')
 
     form['form_list'] = [
         form_main_menu.init_form_main_menu(
@@ -89,7 +88,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
             dict_form_data={
                 "name":'form_enter_name', 
                 "screen":form.get('main_screen'), 
-                "active":True, "coords":(0,0), 
+                "active":True, 
+                "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
                 "sound_path": './click.mp3',
@@ -101,7 +101,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
             dict_form_data={
                 "name":'form_pause', 
                 "screen":form.get('main_screen'), 
-                "active":True, "coords":(0,0), 
+                "active":True, 
+                "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
                 "sound_path": './click.mp3',
@@ -113,7 +114,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
             dict_form_data={
                 "name":'form_bonus', 
                 "screen":form.get('main_screen'), 
-                "active":True, "coords":(0,0), 
+                "active":True, 
+                "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
                 "sound_path": './click.mp3',
@@ -123,7 +125,6 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
        )
     ]
     return form 
-
 
 def forms_update(form_manager: dict, lista_eventos: pg.event.Event):
     #Preguntar por c/u de los form si esta activo y en caso de estarlo, actualizar y dibujar

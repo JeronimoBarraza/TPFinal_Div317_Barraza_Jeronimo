@@ -3,6 +3,7 @@ import sys
 import modulos.forms.base_form as base_form
 import modulos.nivel_cartas as nivel_cartas
 import modulos.variables as var
+import participante as participante
 from utn_fra.pygame_widgets import (
      Label, ButtonImageSound, TextPoster
 )
@@ -55,12 +56,20 @@ def iniciar_stage(form_name: str):
 
 def cambiar_formulario_on_click(parametro: str):
     base_form.set_active(parametro)
-
+    
     if parametro == 'form_start_level':
+
         form_start_level = base_form.forms_dict[parametro]
-        form_start_level['level'] = nivel_cartas.reiniciar_nivel(
-            form_start_level.get('level'), form_start_level.get('jugador'), 
-            form_start_level.get('screen'), form_start_level.get('level_number')
+
+        if form_start_level.get('jugador') is None:
+            form_start_level['jugador'] = participante.inicializaar_participante(
+            pantalla=form_start_level.get('screen'),
+            nombre='Jugador'
+        )
+        form_start_level['level'] = nivel_cartas.reiniciar_nivel(          # puede ser None y NO hay problema
+            form_start_level['jugador'],
+            form_start_level['screen'],
+            form_start_level['level_number']
             )
         nivel_cartas.inicializar_data_nivel(form_start_level.get('level'))
     base_form.set_active(parametro)

@@ -144,7 +144,7 @@ def generar_bd(root_path_cards: str):
                 datos = filename.split('_')
 
                 card = {
-                    "id": f'{deck_name}-{datos}',
+                    "id": f'{deck_name}-{datos[0]}',
                     "atk": int(datos[4]),
                     "def": int(datos[6]),
                     "hp": int(datos[2]),
@@ -175,13 +175,3 @@ def reducir(callback, iterable: list):
     for elemento in iterable:
         suma += callback(elemento)
     return suma
-
-# def asignar_frases(lista_mazo: list[dict], lista_frases: list[dict]) -> dict:
-    
-#     for index_card in range(len(lista_mazo)):
-#         frase = rd.choiche(lista_frases)
-#         lista_mazo[index_card]['frase'] = frase.get('frase')
-#         lista_mazo[index_card]['puntaje'] = frase.get('puntaje')
-    
-#     return lista_mazo
-

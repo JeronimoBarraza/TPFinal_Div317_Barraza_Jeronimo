@@ -1,5 +1,6 @@
 import pygame as pg
 import modulos.carta as carta
+import modulos.nivel_cartas as nivel_cartas
 import modulos.variables as var
 import modulos.auxiliar as aux
 from functools import reduce
@@ -18,9 +19,9 @@ def inicializaar_participante(pantalla: pg.Surface, nombre: str = 'PC'):
     participante['cartas_mazo_usadas'] = []
     
     participante['screen'] = pantalla
-    participante['pos_deck_inicial'] = (350,250)
-    participante['pos_deck_jugado'] = (120,460)
-
+    participante['pos_deck_inicial'] = (0,60)
+    participante['pos_deck_jugado'] = (0,60)
+    
     return participante
 
 def get_hp_inicial_participante(participante: dict):
@@ -43,7 +44,7 @@ def get_hp_participante(participante: dict):
     Returns:
         _type_: Retorna la hp actual
     """
-    return participante.get('attack')
+    return participante.get('hp_actual')
 
 def get_attack_inicial_participante(participante: dict):
     """ Retonarmos el attack inicial del participante en cuestión
@@ -54,7 +55,7 @@ def get_attack_inicial_participante(participante: dict):
     Returns:
         _type_: Retorna el attack 
     """
-    return participante.get('puntaje_actual')
+    return participante.get('attack')
 
 def get_defense_participante(participante: dict):
     """ Retonarmos la def del participante en cuestión
@@ -128,41 +129,39 @@ def get_coordenadas_mazo_inicial(participante: dict):
     Returns:
         _type_: Retorna las coordenadas
     """
-    return participante.get('pos_deck_inicial')
+    return participante['pos_deck_inicial']
 
 def get_coordenadas_mazo_jugado(participante: dict):
     """En esta función asignamos las cartas que fueron usadas
-
     Args:
         participante (dict): Le pasamos el diccionario
-
     Returns:
         _type_: Retornamos el mazo de las cartas ya jugadas
     """
-    return participante.get('pos_deck_jugado')
+    return participante['pos_deck_jugado']
 
 def get_carta_actual_participante(participante: dict):
     """En esta función mostramos la última carta jugada del mazo
-
     Args:
         participante (dict): Le pasamos el diccionario
-
     Returns:
         _type_: Retorna la última carta del mazo
     """
-    return participante.get('cartas_mazo_usadas')
+    return participante.get('cartas_mazo_usadas')[-1]
 
 def setear_stat_participante(participante: dict, stat: str, valor: int):
     participante[stat] = valor
 
 def set_cartas_participante(participante: dict, lista_cartas: list[dict]):
-    print("LISTA CARTAS QUE LLEGA:", lista_cartas)
     for carta_base in lista_cartas:
         carta_base['coordenadas'] = get_coordenadas_mazo_inicial(participante)  
 
     participante['cartas_asignadas'] = lista_cartas
     participante['cartas_mazo'] = lista_cartas.copy()
-    print("DEBUG 5 — cartas_asignadas DESPUÉS:", participante.get('cartas_asignadas'))
+
+    print("STEP5 -> jugador cartas_mazo:", len(participante['jugador'].get('cartas_mazo', [])))
+    print("STEP5 -> enemigo cartas_mazo:", len(participante['enemigo'].get('cartas_mazo', [])))
+
 
 def set_score_participante(participante: dict, score: int):
     """En esta función mostramos el score total del participante
@@ -179,26 +178,11 @@ def asignar_stats_iniciales_participante(participante: dict):
     Args:
         participante (dict): Retornamos la información del hp_inicial, hp_actual, attack y defense
     """
-
-    # if participante.get('cartas_asignadas') is None and participante.get('cartas_iniciales'):
-    #     participante['cartas_asignadas'] = participante['cartas_iniciales']
-    # print("--------- DEBUG REDUCIR ---------")
-    # print("participante:", participante)
-    # print("cartas_asignadas:", participante.get('cartas_asignadas'))
-    # print("tipo:", type(participante.get('cartas_asignadas')))
-    # print("---------------------------------")
     participante['hp_inicial'] = aux.reducir(carta.get_hp_carta, participante.get('cartas_asignadas'))
     participante['hp_actual'] = participante['hp_inicial']
 
-    participante['attack'] = aux.reducir(
-        carta.get_atk_carta,
-        participante.get('cartas_asignadas')
-    )
-
-    participante['defense'] = aux.reducir(
-        carta.get_def_carta,
-        participante.get('cartas_asignadas')
-    )
+    participante['attack'] = aux.reducir(carta.get_atk_carta,participante.get('cartas_asignadas'))
+    participante['defense'] = aux.reducir(carta.get_def_carta,participante.get('cartas_asignadas'))
 
 def chequear_valor_negativo(stat: int):
     """En esta función chequeamos que el valor del entero sea menor a 0
@@ -214,43 +198,59 @@ def chequear_valor_negativo(stat: int):
     else:
         return stat
 
-def restar_stats_participante(participante: dict, carta: dict, is_critico: bool):
+def restar_stats_participante(participante: dict, carta_ganadora: dict, is_critico: bool):
     damage_mul = 1
     if is_critico:
         damage_mul = 2
 
     carta_jugador = participante.get('cartas_mazo_usadas')[-1]
-    # damage = carta.get_atk_carta(carta_ganadora) - carta.get_def_carta(carta_jugador)
+    damage = carta.get_atk_carta(carta_ganadora) - carta.get_def_carta(carta_jugador)
     damage *= damage_mul
 
     participante['hp_actual'] = chequear_valor_negativo(participante.get('hp_actual') - damage)
     participante['attack'] -= carta.get_atk_carta(carta_jugador)
     participante['defense'] -= carta.get_def_carta(carta_jugador)
 
- 
 def jugar_carta(participante: dict):
+
+    print("PLAY -> antes pop cartas_mazo:", participante.get('cartas_mazo'))
+
     if participante.get('cartas_mazo'):
+        print(f'El jugador {participante.get('nombre')} tiene {len(participante.get('cartas_mazo'))} cartas')
         carta_actual = participante.get('cartas_mazo').pop()
-        carta.cambiar_visibilidad_carta(carta_actual)
-        carta.asignar_coordenadas_carta(carta_actual, get_coordenadas_mazo_jugado(participante))
+
+        print("PLAY -> carta_actual:", carta_actual)
+        print("PLAY -> despues pop cartas_mazo:", participante.get('cartas_mazo'))
+        print("PLAY -> cartas_mazo_usadas:", participante.get('cartas_mazo_usadas'))
+        
         participante.get('cartas_mazo_usadas').append(carta_actual)
+        carta.cambiar_visibilidad_carta(carta_actual)
+        carta.asignar_coordenadas_carta(carta_actual, participante['pos_deck_jugado'])
+    else:
+        print(f'El jugador {participante.get('nombre')} no tiene cartas')
+
+    
 
 def info_to_csv(participante: dict):
     return f'{get_nombre_participante(participante)},{participante.get('score')}\n'
 
 def reiniciar_datos_participante(participante: dict):
+    
     set_score_participante(participante, 0)
-    set_cartas_participante(participante, list())
-    participante['cartas_mazo_usadas'] = list()
 
-    setear_stat_participante(participante, 'hp_inicial', 0 )
-    setear_stat_participante(participante, 'hp_actual', 0 )
-    setear_stat_participante(participante, 'attack', 0 )
-    setear_stat_participante(participante, 'defense', 0 )
+    participante['cartas_asignadas'] = []
+    participante['cartas_mazo'] = []
+    participante['cartas_mazo_usadas'] = []
 
+    participante['hp_inicial'] = 0
+    participante['hp_actual'] = 0
+    participante['attack'] = 0
+    participante['defense'] = 0
+    
 def draw_participante(participante: dict, screen: pg.Surface):
+    
+    if participante.get('cartas_mazo'):
+        carta.draw_carta(participante.get('cartas_mazo')[-1], screen, participante['pos_deck_inicial'])
 
-    if participante.get('cartas_asignadas'):
-        carta.draw_carta(participante.get('cartas_asignadas')[-1],screen)
     if participante.get('cartas_mazo_usadas'): 
-        carta.draw_carta(participante.get('cartas_mazo_usadas')[-1],screen)
+        carta.draw_carta(participante.get('cartas_mazo_usadas')[-1], screen, participante['pos_deck_jugado'])

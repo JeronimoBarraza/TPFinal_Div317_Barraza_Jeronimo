@@ -16,12 +16,11 @@ def pythonisa():
     corriendo = True
     reloj = pg.time.Clock()
     datos_juego = {
-        "volumen_musica": 100,
-        "tiempo_finalizado": None,
-        "nombre": participante.inicializaar_participante(pantalla, 'player'),
         "puntuacion": 0,
         "cantidad_vidas": var.CANTIDAD_VIDAS,
-        "jugador": jugador_humano.inicializar_jugador()
+        "player": participante.inicializaar_participante(pantalla, 'player'),
+        "volumen_musica": 100,
+        "tiempo_finalizado": None,
     }
 
     f_manager = form_manager.create_form_manager(pantalla, datos_juego)

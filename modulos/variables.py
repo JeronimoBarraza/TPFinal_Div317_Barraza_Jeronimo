@@ -53,7 +53,7 @@ RUTA_RANKING_CSV = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon
 RUTA_CONFIGS_JSON = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/configs.json'
 
 JSON_INFO_CARDS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/info_cartas.json'
-
+# JSON_INFO_CARDS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/info_cartas.json'
 
 # ------ COORDENADAS CARTAS -------
 

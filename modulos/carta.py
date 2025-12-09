@@ -15,45 +15,18 @@ import modulos.auxiliar as aux
 def inicializar_carta(carta_dict: dict, coordenadas: tuple[int, int]) -> dict:     
     carta_dict_final = {}
     carta_dict_final = carta_dict  
+
     carta_dict_final['id'] = carta_dict_final.get('id')
     carta_dict_final['nombre'] = carta_dict_final.get('nombre')
     carta_dict_final['coordenadas'] = coordenadas
-    carta_dict_final['path_imagen_frente'] = carta_dict_final.get('path_imagen_frente')
-    carta_dict_final['path_imagen_reverso'] = carta_dict_final.get('path_imagen_reverso')
-
-    carta_dict_final['visible'] = False
-    carta_dict_final['imagen'] = aux.achicar_imagen_card(carta_dict_final.get('path_imagen_frente'), 40)
-    carta_dict_final['imagen_reverso'] = aux.achicar_imagen_card(carta_dict_final.get('path_imagen_reverso'), 40)
-
-    carta_dict_final['rect'] = carta_dict_final.get('imagen').get_rect()
-    carta_dict_final['rect'].x = coordenadas[0]
-    carta_dict_final['rect'].y = coordenadas[1]
-
-    carta_dict_final['rect_reverso'] = carta_dict_final.get('imagen_reverso').get_rect()
-    carta_dict_final['rect_reverso'].x = coordenadas[0]
-    carta_dict_final['rect_reverso'].y = coordenadas[1]
 
     return carta_dict_final
 
-def draw_carta(card_data: dict, screen: pg.Surface):
+def asignar_coordenadas_carta(carta_dict_final: dict, nueva_coordenada: tuple[int, int]):
+    carta_dict_final['coordenadas'] = nueva_coordenada
 
-    if card_data.get('visible'):
-        screen.blit(card_data.get('imagen'), card_data.get('rect'))
-    else:
-        screen.blit(card_data.get('imagen_reverso'), card_data.get('rect_reverso'))
-
-def get_puntaje_carta(card_dict: dict):
-    return card_dict.get('puntaje')
-
-def asignar_coordenadas_carta(carta_dict: dict, nueva_coordenada: tuple[int, int]):
-    carta_dict['rect'].topleft = nueva_coordenada
-    carta_dict['rect_reverso'].topleft = nueva_coordenada
-
-def cambiar_visibilidad_carta(carta_dict: dict):
-    carta_dict['visible'] = True
-
-def get_hp_carta(carta_dict_final: dict):
-    return carta_dict_final.get('hp')
+def cambiar_visibilidad_carta(carta_dict_final: dict):
+    carta_dict_final['visible'] = True
 
 def get_atk_carta(carta_dict_final: dict):
     return carta_dict_final.get('atk')
@@ -61,5 +34,17 @@ def get_atk_carta(carta_dict_final: dict):
 def get_def_carta(carta_dict_final: dict):
     return carta_dict_final.get('def')
 
-def set_puntaje(card_dict: dict, puntaje: int):
-    card_dict['puntaje'] = puntaje
+def get_hp_carta(carta_dict_final: dict):
+    return carta_dict_final.get('hp')
+
+def draw_carta(carta_dict_final: dict, screen: pg.Surface, coordenadas: tuple):
+    if carta_dict_final.get('visible'):
+        carta_dict_final['imagen'] = aux.achicar_imagen_card(carta_dict_final.get('path_imagen_frente'), 40)
+        carta_dict_final['rect'] = carta_dict_final.get('imagen').get_rect()
+        carta_dict_final['rect'].x, carta_dict_final['rect'].y = coordenadas
+        screen.blit(carta_dict_final['imagen'], carta_dict_final['rect'])
+    else:
+        carta_dict_final['imagen_reverso'] = aux.achicar_imagen_card(carta_dict_final.get('path_imagen_reverso'), 40)
+        carta_dict_final['rect_reverso'] = carta_dict_final['imagen_reverso'].get_rect()
+        carta_dict_final['rect_reverso'].topleft = coordenadas
+        screen.blit(carta_dict_final['imagen_reverso'], carta_dict_final['rect_reverso'])

@@ -1,6 +1,6 @@
 {
     "nivel_1": {
-        "ruta_mazo": "E:/UTN/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/assets/img/decks/blue_deck_expansion_1",
+        "ruta_mazo": "assets/decks/blue_deck_expansion_1",
         "coordenadas_mazo_1": [370, 126],
         "coordenadas_mazo_2": [690, 126],
         "cantidad_cartas_jugadores": 10
@@ -8,3 +8,4 @@
     "nivel_2": {},
     "nivel_3": {}
 }
+

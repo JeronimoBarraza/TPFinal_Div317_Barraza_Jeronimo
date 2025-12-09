@@ -93,13 +93,13 @@ def cargar_bd_cartas(nivel_data: dict):
     print("STEP1 -> cartas_mazo_juego['cartas'] type:", type(nivel_data['cartas_mazo_juego']['cartas']))
     print("STEP1 -> total cartas en JSON:", sum(len(v) for v in nivel_data['cartas_mazo_juego']['cartas'].values()) if isinstance(nivel_data['cartas_mazo_juego'].get('cartas'), dict) else len(nivel_data['cartas_mazo_juego'].get('cartas', [])))
     
-def asignar_cartas_stage(nivel_data: dict, participante: dict):
+def asignar_cartas_stage(nivel_data: dict, participantes: dict):
     nivel_data['enemigo']['cartas_mazo'] = nivel_data['enemigo']['cartas_asignadas'].copy()
 
     rd.shuffle(nivel_data.get('cartas_mazo_preparadas'))
     cantidad_cartas = nivel_data.get('cantidad_cartas_jugadores')
     cartas_panticipante = rd.sample(nivel_data.get('cartas_mazo_preparadas'), cantidad_cartas)
-    participante['cartas_asignadas'] = cartas_panticipante
+    participante.set_cartas_participante(participantes, cartas_panticipante)
 
     print("STEP3 -> jugador cartas_asignadas:", len(nivel_data['jugador'].get('cartas_asignadas', [])))
     print("STEP4 -> enemigo cartas_asignadas:", len(nivel_data['enemigo'].get('cartas_asignadas', [])))
@@ -177,7 +177,7 @@ def juego_terminado(nivel_data: dict):
 
 def jugar_mano_stage(nivel_data):
     participante.jugar_carta(nivel_data['jugador'])
-    participante.jugar_carta(nivel_data['jugador'])
+    participante.jugar_carta(nivel_data['enemigo'])
 
 def es_golpe_critico() -> bool:
     critical = rd.choice([False, False, False, True])

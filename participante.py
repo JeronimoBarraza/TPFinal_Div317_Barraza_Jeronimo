@@ -153,14 +153,17 @@ def setear_stat_participante(participante: dict, stat: str, valor: int):
     participante[stat] = valor
 
 def set_cartas_participante(participante: dict, lista_cartas: list[dict]):
-    for carta_base in lista_cartas:
+    import copy
+
+    cartas_copia = copy.deepcopy(lista_cartas)
+    for carta_base in cartas_copia:
         carta_base['coordenadas'] = get_coordenadas_mazo_inicial(participante)  
 
-    participante['cartas_asignadas'] = lista_cartas
-    participante['cartas_mazo'] = lista_cartas.copy()
+    participante['cartas_asignadas'] = cartas_copia
+    participante['cartas_mazo'] = cartas_copia.copy()
 
-    print("STEP5 -> jugador cartas_mazo:", len(participante['jugador'].get('cartas_mazo', [])))
-    print("STEP5 -> enemigo cartas_mazo:", len(participante['enemigo'].get('cartas_mazo', [])))
+    # print("STEP5 -> jugador cartas_mazo:", len(participante['jugador'].get('cartas_mazo', [])))
+    # print("STEP5 -> enemigo cartas_mazo:", len(participante['enemigo'].get('cartas_mazo', [])))
 
 
 def set_score_participante(participante: dict, score: int):

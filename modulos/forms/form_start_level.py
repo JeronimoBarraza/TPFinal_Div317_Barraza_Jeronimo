@@ -22,8 +22,8 @@ def init_form_start_level(dict_form_data: dict):
     form['bonus_2_used'] = False
     form['first_last_timer'] = pg.time.get_ticks()
 
-    nivel_data = nivel_cartas.inicializar_nivel_cartas(form['jugador'], form['screen'],form['level_number'] )
-    dict_form_data['nivel'] = nivel_data
+    # nivel_data = nivel_cartas.inicializar_nivel_cartas(form['jugador'], form['screen'],form['level_number'] )
+    # dict_form_data['nivel'] = nivel_data
     
     form['lbl_clock'] = Label(
         x=var.DIMENSION_PANTALLA[0] // 2, y=30, 
@@ -76,7 +76,7 @@ def select_bonus(form_y_bonus_name: dict):
 
 def jugar_mano(dict_form_data: dict):
     nivel = dict_form_data.get('level')
-    ganador_mano = nivel_cartas.jugar_mano(nivel)
+    ganador_mano = nivel_cartas.jugar_mano_stage(nivel)
     print(f'El ganador de la mano es: {ganador_mano}')
 
 def inicializar_nueva_partida(dict_form_data: dict):
@@ -107,16 +107,8 @@ def draw(dict_form_data: dict):
     for widget_index in range(len(dict_form_data.get('widgets_list'))):
         if widget_index == 3 and dict_form_data.get('bonus_1_used') or widget_index == 4 and dict_form_data.get('bonus_2_used'):
             dict_form_data.get('widgets_list')[widget_index].draw()
-    
-    if 'nivel' not in dict_form_data or dict_form_data['nivel'] is None:
-        nivel_data = nivel_cartas.inicializar_nivel_cartas(
-            dict_form_data['jugador'], 
-            dict_form_data['screen'], 
-            dict_form_data['level_number']
-        )
-        dict_form_data['nivel'] = nivel_data
 
-    nivel_cartas.draw_jugadores(dict_form_data.get('nivel'))
+    nivel_cartas.draw_jugadores(dict_form_data.get('level'))
 
 def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     base_form.update(dict_form_data)

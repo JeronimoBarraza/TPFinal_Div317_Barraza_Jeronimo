@@ -27,14 +27,14 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number":1, 
                 "music_path": var.RUTA_MUSICA_MENU,
-                "sound_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/assets/audio/click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_5.png',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_MENU_PRINCIPAL,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
                 "botones": {
-                    "jugar": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_jugar.png',
-                    "historia": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_historia.png',
-                    "ranking": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_ranking.png',
-                    "salir": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_salir.png'
+                    "jugar": var.BOTON_JUGAR,
+                    "historia": var.BOTON_HISTORIA,
+                    "ranking": var.BOTON_RANKING,
+                    "salir": var.BOTON_SALIR
                 }
             }
         ),
@@ -42,11 +42,12 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
             dict_form_data={
                 "name":'form_historia', 
                 "screen":form.get('main_screen'), 
-                "active":True, "coords":(0,0), 
+                "active":True, 
+                "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_6.png',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_OPTIONS,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
                 "botones": {
                     "music_on": '',
@@ -63,8 +64,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_8.png',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_RANKING,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
                 "botones": {"volver": 'btn_volver.png'},
             },  
@@ -78,8 +79,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number": 1, 
                 "music_path": var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/background_cards.png',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_CARTA,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
                 "jugador": form.get('jugador')
                 }
@@ -92,8 +93,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_3.jpg',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_ENTER_NAME,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
             }, jugador=form.get('jugador')
         ),
@@ -105,8 +106,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_20.jpg',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_PAUSE,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
             }
         ),
@@ -118,8 +119,8 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "coords":(0,0), 
                 "stage_number":1, 
                 "music_path":var.RUTA_MUSICA_MENU,
-                "sound_path": './click.mp3',
-                "background_path": 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_1.png',
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_BONUS,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
             }, jugador=form.get('jugador')
        )

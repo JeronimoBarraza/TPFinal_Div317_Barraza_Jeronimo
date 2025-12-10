@@ -21,26 +21,25 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
     nivel_data['screen'] = pantalla
     nivel_data['jugador'] = jugador
     
-    nivel_data['coords_iniciales_enemigo'] = (410,70)
-    nivel_data['coords_finales_enemigo'] = (510,70)
+    nivel_data['enemigo'] = participante.inicializaar_participante(pantalla, nombre='enemigo')
+    nivel_data['coords_iniciales_enemigo'] = (410,120)
+    nivel_data['coords_finales_enemigo'] = (610,120)
 
     nivel_data['coords_iniciales_jugador'] = (410,450)
-    nivel_data['coords_finales_jugador'] = (510,450)
+    nivel_data['coords_finales_jugador'] = (610,450)
 
     nivel_data['cantidad_cartas_jugadores'] = 10
-    nivel_data['enemigo'] = participante.inicializaar_participante(pantalla, nombre='enemigo')
-    
-    nivel_data['jugador']['cartas_mazo'] = nivel_data['jugador']['cartas_asignadas'].copy()
-    nivel_data['enemigo']['cartas_mazo'] = nivel_data['enemigo']['cartas_asignadas'].copy()
-    print("Cartas del enemigo:", nivel_data['enemigo']['cartas_mazo'])
+
+    print("Jugador mazo:", len(nivel_data['jugador']['cartas_mazo']))
+    print("Enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
+
+    print("Cartas enemigo:", len(nivel_data['enemigo']['cartas_asignadas']))
 
     for carta in nivel_data['enemigo']['cartas_mazo']:
-        print('path reverso:', carta.get('path_imagen_reverso'))
+        # print('path reverso:', carta.get('path_imagen_reverso'))
+        continue
 
     draw_jugadores(nivel_data)
-
-    print("Cartas preparadas:", nivel_data['cartas_mazo_preparadas'])
-    print("Cantidad de cartas por jugador:", nivel_data['cantidad_cartas_jugadores'])
 
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_inicial', nivel_data['coords_iniciales_enemigo'])
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_jugado', nivel_data['coords_finales_enemigo'])
@@ -71,6 +70,7 @@ def inicializar_data_nivel(nivel_data: dict):
 
 def cargar_configs_nivel(nivel_data: dict):
     if not nivel_data.get('juego_finalizado') and not nivel_data.get('data_cargada'):
+        print("ANTES DEL FORM - enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
         print('=============== CARGANDO CONFIGS INICIALES ===============')
         configs_globales = aux.cargar_configs(var.RUTA_CONFIGS_JSON)
         nivel_data['configs'] = configs_globales.get(f'nivel_{nivel_data.get("num_nivel")}')
@@ -83,56 +83,55 @@ def cargar_bd_cartas(nivel_data: dict):
     if not nivel_data.get('juego_finalizado'):
         if os.path.exists(var.JSON_INFO_CARDS) and os.path.isfile(var.JSON_INFO_CARDS):
             print('=============== GENERANDO BD CARTAS INICIALES DESDE FILE ===============')
+            print("ENTRANDO FORM - enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
             nivel_data['cartas_mazo_juego'] = aux.cargar_configs(var.JSON_INFO_CARDS)
         else:
             print('=============== GENERANDO BD CARTAS INICIALES DESDE DIR ===============')
             bd = aux.generar_bd(nivel_data.get('ruta_mazo'))
             nivel_data['cartas_mazo_juego'] = {"cartas": bd["cartas"]}
   
-    print("STEP1 -> cartas_mazo_juego keys:", nivel_data.get('cartas_mazo_juego').keys())
-    print("STEP1 -> cartas_mazo_juego['cartas'] type:", type(nivel_data['cartas_mazo_juego']['cartas']))
-    print("STEP1 -> total cartas en JSON:", sum(len(v) for v in nivel_data['cartas_mazo_juego']['cartas'].values()) if isinstance(nivel_data['cartas_mazo_juego'].get('cartas'), dict) else len(nivel_data['cartas_mazo_juego'].get('cartas', [])))
+    # print("STEP1 -> cartas_mazo_juego keys:", nivel_data.get('cartas_mazo_juego').keys())
+    # print("STEP1 -> cartas_mazo_juego['cartas'] type:", type(nivel_data['cartas_mazo_juego']['cartas']))
+    # print("STEP1 -> total cartas en JSON:", sum(len(v) for v in nivel_data['cartas_mazo_juego']['cartas'].values()) if isinstance(nivel_data['cartas_mazo_juego'].get('cartas'), dict) else len(nivel_data['cartas_mazo_juego'].get('cartas', [])))
     
 def asignar_cartas_stage(nivel_data: dict, participantes: dict):
-    nivel_data['enemigo']['cartas_mazo'] = nivel_data['enemigo']['cartas_asignadas'].copy()
-
+    
     rd.shuffle(nivel_data.get('cartas_mazo_preparadas'))
     cantidad_cartas = nivel_data.get('cantidad_cartas_jugadores')
     cartas_panticipante = rd.sample(nivel_data.get('cartas_mazo_preparadas'), cantidad_cartas)
-    participante.set_cartas_participante(participantes, cartas_panticipante)
+    participante.set_cartas_participante(participantes,cartas_panticipante)
 
-    print("STEP3 -> jugador cartas_asignadas:", len(nivel_data['jugador'].get('cartas_asignadas', [])))
-    print("STEP4 -> enemigo cartas_asignadas:", len(nivel_data['enemigo'].get('cartas_asignadas', [])))
+    print(f"[DEBUG] {participantes['nombre']} cartas_asignadas: {len(participantes['cartas_asignadas'])}")
+    print(f"[DEBUG] {participantes['nombre']} cartas_mazo: {len(participantes['cartas_mazo'])}")
 
-
+    
 def generar_mazo(nivel_data: dict): 
     print('=============== GENERANDO MAZO FINAL ===============')
+    print("ENTRANDO FORM - enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
+
 
     if "cartas" in nivel_data["cartas_mazo_juego"]:
         mazo = nivel_data['cartas_mazo_juego']['cartas']['assets/decks/blue_deck_expansion_1']
-
-    # Si viene del generador de BD (NO tiene la clave 'cartas')
     else:
         mazo = nivel_data['cartas_mazo_juego']['assets/decks/blue_deck_expansion_1']
 
     for cartas in mazo:
-        carta_final = carta.inicializar_carta(cartas, (20,20))
+        carta_final = carta.inicializar_carta(cartas, (500,250))
         nivel_data['cartas_mazo_preparadas'].append(carta_final)
 
-    
 def barajar_mazos_nivel(nivel_data: dict): 
-
     if not nivel_data.get('juego_finalizado'):
+
         asignar_cartas_stage(nivel_data, nivel_data['jugador'])
         asignar_cartas_stage(nivel_data, nivel_data['enemigo'])
-
-        nivel_data['jugador']['cartas_mazo'] = nivel_data['jugador']['cartas_asignadas'].copy()
-        nivel_data['enemigo']['cartas_mazo'] = nivel_data['enemigo']['cartas_asignadas'].copy()
 
         participante.asignar_stats_iniciales_participante(nivel_data['jugador'])
         participante.asignar_stats_iniciales_participante(nivel_data['enemigo'])
 
-        nivel_data['data_cargada'] = True   
+        nivel_data['data_cargada'] = True
+
+    print("Jugador mazo:", len(nivel_data['jugador']['cartas_mazo']))
+    print("Enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
 
 def eventos(nivel_data: dict, cola_eventos: list[pg.event.Event]):
     for evento in cola_eventos:
@@ -234,10 +233,10 @@ def jugar_mano(nivel_data:dict):
 
 def draw_jugadores(nivel_data: dict):
 
-    print("STEP6 -> Antes draw -> cartas_preparadas:", len(nivel_data.get('cartas_mazo_preparadas', [])))
-    print("STEP6 -> Antes draw -> enemigo cartas_mazo:", len(nivel_data['enemigo'].get('cartas_mazo', [])))
+    # print("STEP6 -> Antes draw -> cartas_preparadas:", len(nivel_data.get('cartas_mazo_preparadas', [])))
+    # print("STEP6 -> Antes draw -> enemigo cartas_mazo:", len(nivel_data['enemigo'].get('cartas_mazo', [])))
 
-
+    # pg.draw.rect(nivel_data['screen'], (255,0,0), (400, 100, 50, 70))
     if nivel_data is None:
         return
     

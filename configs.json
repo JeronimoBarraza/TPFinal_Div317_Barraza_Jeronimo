@@ -1,7 +1,7 @@
 {
     "nivel_1": {
         "ruta_mazo": "assets/decks/blue_deck_expansion_1",
-        "coordenadas_mazo_1": [370, 126],
+        "coordenadas_mazo_1": [225, 150],
         "coordenadas_mazo_2": [690, 126],
         "cantidad_cartas_jugadores": 10
     },

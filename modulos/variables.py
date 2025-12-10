@@ -25,17 +25,25 @@ FUENTE_HALIMOUNT = pg.font.Font(RUTA_FUENTE, 25)
 FUENTE_ARIAL = pg.font.SysFont('Arial', 20)
 
 pg.font.quit()
+
 # ------- IMAGENES -------
 
 IMAGEN_ICONO_JUEGO = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/Z_star.png'
 
-IMAGEN_MENU_PRINCIPAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_5.png'
+IMAGEN_BONUS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_1.png'
 
-IMAGEN_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_8.png'
+IMAGEN_ENTER_NAME = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_3.jpg'
+
+IMAGEN_MENU_PRINCIPAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_5.png'
 
 IMAGEN_OPTIONS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_6.png'
 
+IMAGEN_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_8.png'
+
+IMAGEN_PAUSE = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_20.jpg'
+
 IMAGEN_CARTA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/background_cards.png'
+
 # ------- VIDAS --------
 
 CANTIDAD_VIDAS = 3
@@ -53,7 +61,6 @@ RUTA_RANKING_CSV = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon
 RUTA_CONFIGS_JSON = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/configs.json'
 
 JSON_INFO_CARDS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/info_cartas.json'
-# JSON_INFO_CARDS = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/info_cartas.json'
 
 # ------ COORDENADAS CARTAS -------
 
@@ -71,5 +78,19 @@ nombres = [
 # ------ SONIDOS -----
 
 pg.mixer.init()
+
 RUTA_MUSICA_MENU = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/assets/audio/ChalaHeadChala.mp3'
+
 SOUND = pg.mixer.Sound(RUTA_MUSICA_MENU)
+
+RUTA_SONIDO_CLICK = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/assets/audio/click.mp3'
+
+# ------ BOTONES ------
+
+BOTON_JUGAR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_jugar.png'
+
+BOTON_HISTORIA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_historia.png'
+
+BOTON_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_ranking.png'
+
+BOTON_SALIR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_salir.png'

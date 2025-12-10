@@ -48,8 +48,7 @@ def draw_widgets(form_data: dict):
 
 def draw(form_data: dict):
     form_data['screen'].blit(form_data.get('surface'), form_data.get('rect'))
-    # draw_widgets(form_data)
-
+    
 def update(form_data: dict):
     update_widgets(form_data)
     

@@ -23,7 +23,6 @@ def init_form_historia(dict_form_data: dict):
     ]
     
     base_form.forms_dict[dict_form_data.get('name')] = form
-
     return form
 
 def click_volver(parametro: str):

@@ -163,9 +163,6 @@ def set_cartas_participante(participante: dict, lista_cartas: list[dict]):
     participante['cartas_mazo'] = cartas_copia.copy()
 
     print(f"Asignando {len(cartas_copia)} cartas a {participante['nombre']}")
-    # print("STEP5 -> jugador cartas_mazo:", len(participante['jugador'].get('cartas_mazo', [])))
-    # print("STEP5 -> enemigo cartas_mazo:", len(participante['enemigo'].get('cartas_mazo', [])))
-
 
 def set_score_participante(participante: dict, score: int):
     """En esta función mostramos el score total del participante
@@ -175,6 +172,9 @@ def set_score_participante(participante: dict, score: int):
         score (int): El score total en entero
     """
     participante['score'] = score
+
+def add_score_participante(participante: dict, score: int):
+    participante['score'] += score
 
 def asignar_stats_iniciales_participante(participante: dict):
     """En esta función asignamos la información de la carta inicial en el participante
@@ -216,17 +216,10 @@ def restar_stats_participante(participante: dict, carta_ganadora: dict, is_criti
     participante['defense'] -= carta.get_def_carta(carta_jugador)
 
 def jugar_carta(participante: dict):
-
-    # print("PLAY -> antes pop cartas_mazo:", participante.get('cartas_mazo'))
-
     if participante.get('cartas_mazo'):
         print(f'El jugador {participante.get('nombre')} tiene {len(participante.get('cartas_mazo'))} cartas')
         carta_actual = participante.get('cartas_mazo').pop()
 
-        # print("PLAY -> carta_actual:", carta_actual)
-        # print("PLAY -> despues pop cartas_mazo:", participante.get('cartas_mazo'))
-        # print("PLAY -> cartas_mazo_usadas:", participante.get('cartas_mazo_usadas'))
-        
         participante.get('cartas_mazo_usadas').append(carta_actual)
         carta.cambiar_visibilidad_carta(carta_actual)
         carta.asignar_coordenadas_carta(carta_actual, participante['pos_deck_jugado'])
@@ -249,9 +242,6 @@ def reiniciar_datos_participante(participante: dict):
     participante['defense'] = 0
     
 def draw_participante(participante: dict, screen: pg.Surface):
-    
-    print(f"[DRAW] {participante['nombre']} -> mazo: {len(participante.get('cartas_mazo', []))}")
-
     if participante.get('cartas_mazo'):
         carta.draw_carta(participante.get('cartas_mazo')[-1], screen, participante['pos_deck_inicial'])
 

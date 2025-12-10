@@ -54,13 +54,25 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
 
     nivel_data['juego_finalizado'] = False
     nivel_data['puntaje_guardado'] = False
-    nivel_data['level_timer'] = var.level_timer
     nivel_data['ganador'] = None
 
+    nivel_data['level_timer'] = var.level_timer
+    nivel_data['first_last_timer'] = pg.time.get_ticks()
     nivel_data['puntaje_nivel'] = 0
     nivel_data['data_cargada'] = False
 
     return nivel_data
+
+def actualizar_timer(nivel_data: dict):
+    if nivel_data['level_timer'] > 0:
+        tiempo_actual = pg.time.get_ticks()
+        
+        if tiempo_actual - nivel_data.get('first_last_timer') > 1000:
+            nivel_data['level_timer'] -= 1
+            nivel_data['first_last_timer'] = tiempo_actual 
+
+def obtener_tiempo(nivel_data: dict):
+    return nivel_data.get('level_timer')
 
 def inicializar_data_nivel(nivel_data: dict):
     cargar_configs_nivel(nivel_data)
@@ -186,6 +198,7 @@ def comparar_damage(nivel_data):
     ganador_mano = None
     jugador = nivel_data['jugador']
     enemigo = nivel_data['enemigo']
+    critical = False
 
     carta_jugador = participante.get_carta_actual_participante(jugador)
     carta_enemigo = participante.get_carta_actual_participante(enemigo)
@@ -196,47 +209,45 @@ def comparar_damage(nivel_data):
         atk_enemigo = carta.get_atk_carta(carta_enemigo)
 
         if atk_enemigo > atk_jugador:
-            ganador_mano = 'PC'
+            ganador_mano = 'ENEMIGO'
             participante.restar_stats_participante(jugador, carta_enemigo, critical)
         else:
+            score = atk_jugador - carta.get_def_carta(carta_enemigo)
             ganador_mano = 'JUGADOR'
             participante.restar_stats_participante(enemigo, carta_jugador, critical)
+            participante.set_score_participante(jugador,score)
 
-    # print("Jugador:", jugador)
-    # print("Enemigo:", enemigo)
-    # print("Carta jugador:", carta_jugador)
-    # print("Carta enemigo:", carta_enemigo)
-    return ganador_mano
+    return critical, ganador_mano
+
+def setear_ganador(nivel_data: dict, participante: dict):
+    nivel_data['ganador'] = participante
+    nivel_data['juego_finalizado'] = True
 
 def chequear_ganador(nivel_data):
     jugador = nivel_data['jugador']
     enemigo = nivel_data['enemigo']
 
     if (participante.get_hp_participante(jugador) <= 0 or\
-         participante.get_hp_participante(jugador) < participante.get_hp_participante(enemigo)) and\
-            (len(participante.get_cartas_restantes_participante(enemigo)) == 0):
-        nivel_data['ganador'] = enemigo
-        nivel_data['juego_finalizado'] = True
-
+        (participante.get_hp_participante(jugador) < participante.get_hp_participante(enemigo)) and\
+        (len(participante.get_cartas_restantes_participante(enemigo)) == 0)):
+        setear_ganador(nivel_data, enemigo)
+       
     elif (participante.get_hp_participante(enemigo) <= 0 or\
-        participante.get_hp_participante(enemigo) <= participante.get_hp_participante(jugador)) and\
-            (len(participante.get_cartas_restantes_participante(jugador)) == 0):
-        nivel_data['ganador'] = jugador
-        nivel_data['juego_finalizado'] = True
+        (participante.get_hp_participante(enemigo) <= participante.get_hp_participante(jugador)) and\
+        (len(participante.get_cartas_restantes_participante(jugador)) == 0)):
+        setear_ganador(nivel_data, jugador)
 
 def jugar_mano(nivel_data:dict):
-    jugar_mano_stage(nivel_data)
+    if not nivel_data.get('juego_finalizado'):
+        jugar_mano_stage(nivel_data)
 
-    ganador_mano = comparar_damage(nivel_data)
-    chequear_ganador(nivel_data)
-    return ganador_mano
+        critical, ganador_mano = comparar_damage(nivel_data)
+        chequear_ganador(nivel_data)
+        return critical, ganador_mano
+    return None
 
 def draw_jugadores(nivel_data: dict):
 
-    # print("STEP6 -> Antes draw -> cartas_preparadas:", len(nivel_data.get('cartas_mazo_preparadas', [])))
-    # print("STEP6 -> Antes draw -> enemigo cartas_mazo:", len(nivel_data['enemigo'].get('cartas_mazo', [])))
-
-    # pg.draw.rect(nivel_data['screen'], (255,0,0), (400, 100, 50, 70))
     if nivel_data is None:
         return
     
@@ -244,13 +255,14 @@ def draw_jugadores(nivel_data: dict):
     participante.draw_participante(nivel_data['jugador'], nivel_data['screen'])
     participante.draw_participante(nivel_data['enemigo'], nivel_data['screen'])
     
-def update(nivel_data: dict, cola_eventos: list[pg.event.Event]):
-    eventos(nivel_data, cola_eventos)
-    check_juego_terminado(nivel_data)
-    if juego_terminado(nivel_data) and not nivel_data.get('puntaje_guardado'): 
-        jugador_humano.actualizar_puntaje_total(nivel_data['jugador'])
-        # nombre_elegido = rd.choice(var.nombres)
-        # jugador_humano.set_nombre(nivel_data.get("jugador"), nombre_elegido)
+def update(nivel_data: dict):
+    actualizar_timer(nivel_data)
+    # eventos(nivel_data, cola_eventos)
+    # check_juego_terminado(nivel_data)
+    # if juego_terminado(nivel_data) and not nivel_data.get('puntaje_guardado'): 
+    #     jugador_humano.actualizar_puntaje_total(nivel_data['jugador'])
+    #     # nombre_elegido = rd.choice(var.nombres)
+    #     # jugador_humano.set_nombre(nivel_data.get("jugador"), nombre_elegido)
        
-        nivel_data['puntaje_guardado'] = True
-        print(f'Puntos: {jugador_humano.get_puntaje_total(nivel_data['jugador'])}')
+    #     nivel_data['puntaje_guardado'] = True
+    #     print(f'Puntos: {jugador_humano.get_puntaje_total(nivel_data['jugador'])}')

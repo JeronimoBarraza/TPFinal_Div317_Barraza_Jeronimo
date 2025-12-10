@@ -147,12 +147,13 @@ def init_form_start_level(dict_form_data: dict):
 
 def jugar_mano(dict_form_data: dict):
     nivel = dict_form_data.get('level')
+
     if nivel_cartas.hay_jugadores_con_cartas(nivel):
         critical, ganador_mano = nivel_cartas.jugar_mano(nivel)
+
         print(f'El ganador de la mano es: {ganador_mano}')
     elif not nivel_cartas.hay_jugadores_con_cartas(nivel) and nivel_cartas.esta_finalizado(nivel):
         print('EL JUEGO ESTÁ TERMINADO')
-        # print(f'Ganador: {nivel_cartas.obtner_ganador(nivel)}')
 
         if participante.get_nombre_participante(
             nivel_cartas.obtner_ganador(nivel)
@@ -172,27 +173,15 @@ def call_bonus_form(params: dict):
     dict_form_data = params.get('form')
     bonus_info = params.get('bonus')
 
-    nivel = dict_form_data.get('level')
-
-    if bonus_info == 'HEAL':
-        bonus = 'heal'
-    else:
-        bonus = 'shield'
-
-    nivel_cartas.modificar_estado_bonus(nivel, bonus)
-
     bonus_form = base_form.forms_dict.get('form_bonus')
     form_bonus.update_button_bonus(bonus_form, bonus_info)
-    print(f'Estado de activacion: {bonus_form.get('active')}')
-    aux.cambiar_formulario_on_click('form_bonus')
-    print(f'Estado de activacion: {bonus_form.get('active')}')
-
+    aux.cambiar_formulario_on_click('form_bonus')   
 
 def inicializar_nueva_partida(dict_form_data: dict):
-    nivel = dict_form_data.get('level_number')
+    nivel = dict_form_data.get('level')
     jugador = dict_form_data.get('jugador')
     pantalla = dict_form_data.get('pantalla')
-    dict_form_data['level_number'] = nivel_cartas.reiniciar_nivel(nivel_cartas=nivel, jugador=jugador, pantalla=pantalla, num_nivel=nivel.get('level_number')) 
+    dict_form_data['level'] = nivel_cartas.reiniciar_nivel(nivel_cartas=nivel, jugador=jugador, pantalla=pantalla, num_nivel=nivel.get('level')) 
 
 def events_handler(event_list: list[pg.event.Event]):
     for evento in event_list:
@@ -204,9 +193,7 @@ def events_handler(event_list: list[pg.event.Event]):
         if evento.type == pg.MOUSEBUTTONDOWN:
             print(evento.pos)
 
-
 def update_lbls_cards_info(dict_form_data: dict):
-    
     mazo_enemigo = dict_form_data.get('level').get('enemigo').get('cartas_mazo_usadas')
     mazo_jugador = dict_form_data.get('level').get('jugador').get('cartas_mazo_usadas')
 
@@ -233,10 +220,6 @@ def actualizar_puntaje(dict_form_data: dict):
     dict_form_data.get('lbl_score').update_text(text=f'Score: {score}', color=var.COLOR_BLANCO)   
 
 def draw_bonus_widgets(dict_form_data: dict):
-
-    # for widget in dict_form_data.get('widgets_list_bonus'):
-    #     widget.draw()
-
     widget_bonus = dict_form_data.get('widgets_list_bonus')
     level = dict_form_data.get('level')
 
@@ -261,16 +244,9 @@ def draw(dict_form_data: dict):
     draw_bonus_widgets(dict_form_data)  
 
 def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
-
     dict_form_data['lbl_clock'].update_text(f'TIME LEFT: {nivel_cartas.obtener_tiempo(dict_form_data.get('level'))}', color=var.COLOR_BLANCO)
     base_form.update(dict_form_data)
     nivel_cartas.update(dict_form_data.get('level'))
-    
-    # dict_form_data['lbl_score'].update_text(f'SCORE: {dict_form_data.get('jugador').get('puntaje_actual')}', (255,0,0))
-    # for widget_index in range(len(dict_form_data.get('widgets_list'))):
-    #     if widget_index == 3 and dict_form_data.get('bonus_1_used') or widget_index == 4 and dict_form_data.get('bonus_2_used'):
-    #         continue
-    #     dict_form_data.get('widgets_list')[widget_index].update()
 
     nivel_cartas.update(dict_form_data.get('level'))
     update_lbls_cards_info(dict_form_data)
@@ -278,15 +254,5 @@ def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     actualizar_puntaje(dict_form_data)
     update_lbls_participantes(dict_form_data, tipo_participante='enemigo')
     update_bonus_widgets(dict_form_data)
-
-    # mazo_vistas = dict_form_data.get('level').get('cartas_mazo_final_vistas')
-    # if mazo_vistas:
-    #     dict_form_data['txp_info_card'].update_text(mazo_vistas[-1].get('frase'))
-    # dict_form_data['clock'].tick(var.FPS)
-
-    # if nivel_cartas.juego_terminado(dict_form_data.get('level')):
-    #     base_form.stop_music()
-    #     base_form.play_music(base_form.forms_dict['form_enter_name'])
-    #     base_form.set_active('form_enter_name')
     
     events_handler(cola_eventos)

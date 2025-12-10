@@ -3,6 +3,8 @@ import modulos.auxiliar as aux
 import modulos.forms.base_form as base_form
 import modulos.variables as var
 import modulos.jugador as jugador_mod
+import modulos.forms.form_start_level as form_start_level
+import modulos.nivel_cartas as nivel_cartas
 import participante as participante
 from utn_fra.pygame_widgets import (
     Button, Label
@@ -51,13 +53,20 @@ def click_change_form(form_enter_name: str):
     # base_form.play_music(base_form.forms_dict[param])
 
 def click_select_bonus(dict_form_data: dict):
-    option = dict_form_data.get('bonus_info')
+    bonus_info = dict_form_data.get('bonus_info')
     jugador = dict_form_data.get('jugador')
 
-    nivel_cartas = aux.base_form.forms_dict['form_start_level']
-    nivel = nivel_cartas.get('nivel')
+    start_level_form = aux.base_form.forms_dict['form_start_level']
+    level = start_level_form.get('level')
 
-    if option == 'SCORE X3':
+    if bonus_info == 'HEAL':
+        bonus = 'heal'
+    else:
+        bonus = 'shield'
+
+    nivel_cartas.modificar_estado_bonus(level, bonus)
+
+    if bonus_info == 'SCORE X3':
         anterior_puntaje = participante.get_score_participante(jugador)
         nuevo_puntaje = anterior_puntaje * 3
 

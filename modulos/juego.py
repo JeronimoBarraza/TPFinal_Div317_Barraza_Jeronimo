@@ -2,7 +2,6 @@ import pygame as pg
 import sys
 import modulos.variables as var
 import modulos.forms.form_manager as form_manager
-import modulos.jugador as jugador_humano
 import participante as participante
 
 def pythonisa():
@@ -35,8 +34,6 @@ def pythonisa():
                 corriendo = False
         
         form_manager.update(f_manager, event_list)
-
-
         pg.display.flip()
 
     pg.quit()

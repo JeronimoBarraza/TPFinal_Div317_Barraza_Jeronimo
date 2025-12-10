@@ -3,9 +3,7 @@ import pygame as pg
 import random as rd
 import modulos.variables as var
 import modulos.auxiliar as aux
-import modulos.frases as fra
 import modulos.carta as carta
-import modulos.jugador as jugador_humano
 import participante as participante
 
 def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int):
@@ -143,24 +141,6 @@ def barajar_mazos_nivel(nivel_data: dict):
 
     print("Jugador mazo:", len(nivel_data['jugador']['cartas_mazo']))
     print("Enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
-
-def eventos(nivel_data: dict, cola_eventos: list[pg.event.Event]):
-    for evento in cola_eventos:
-        if evento.type == pg.MOUSEBUTTONDOWN:
-            
-            if nivel_data.get('cartas_mazo_juego_final') and nivel_data.get('cartas_mazo_juego_final')[-1].get('rect').collidepoint(evento.pos) and not nivel_data.get('cartas_mazo_juego_final')[-1].get('visible'):
-                carta.asignar_coordenadas_carta(nivel_data.get('cartas_mazo_juego_final')[-1], nivel_data.get('coords_finales'))
-                carta.cambiar_visibilidad_carta(nivel_data.get('cartas_mazo_juego_final')[-1])
-
-                carta_vista = nivel_data.get('cartas_mazo_juego_final').pop()
-                nivel_data.get('cartas_mazo_juego_final_vistas').append(carta_vista)
-                
-                carta_actual = nivel_data.get('cartas_mazo_juego_final_vistas')[-1]
-                jugador_humano.sumar_puntaje_carta_actual(nivel_data['jugador'], carta_actual)
-
-                print(f'puntaje act: {jugador_humano.get_puntaje_actual(nivel_data['jugador'])}')
-
-                print(f'frase actual: {nivel_data.get('cartas_mazo_juego_final_vistas')[-1].get('frase')}')
 
 def tiempo_esta_terminado(nivel_data: dict):
     return nivel_data.get('level_timer') <= 0

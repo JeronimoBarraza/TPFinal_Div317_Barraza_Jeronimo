@@ -2,7 +2,6 @@ import pygame as pg
 import modulos.auxiliar as aux
 import modulos.forms.base_form as base_form
 import modulos.variables as var
-import modulos.jugador as jugador_mod
 import modulos.forms.form_start_level as form_start_level
 import modulos.nivel_cartas as nivel_cartas
 import participante as participante

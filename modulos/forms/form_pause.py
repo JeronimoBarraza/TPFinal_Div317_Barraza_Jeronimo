@@ -1,7 +1,6 @@
 import modulos.auxiliar as aux
 import modulos.forms.base_form as base_form
 import modulos.variables as var
-import modulos.jugador as jugador_mod
 from utn_fra.pygame_widgets import (
     Button, Label
 )

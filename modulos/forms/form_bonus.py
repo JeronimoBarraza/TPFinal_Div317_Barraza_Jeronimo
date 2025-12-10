@@ -3,21 +3,27 @@ import modulos.auxiliar as aux
 import modulos.forms.base_form as base_form
 import modulos.variables as var
 import modulos.jugador as jugador_mod
+import participante as participante
 from utn_fra.pygame_widgets import (
     Button, Label
 )
 
 def init_form_bonus(dict_form_data: dict, jugador: dict):
-    form = base_form.create_base_form(dict_form_data)
+    form = base_form.create_base_form(dict_form_data)   
     form['jugador'] = jugador
+
     form['bonus_info'] = ''
 
     form['title'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, text=var.TITULO_JUEGO, screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=70, color=var.COLOR_BLANCO
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, 
+        text=var.TITULO_JUEGO, screen=form.get('screen'), 
+        font_path=var.RUTA_FUENTE, font_size=70, color=var.COLOR_BLANCO
     )
 
     form['subtitle'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 170, text='SELECCIONA UN BONUS', screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=50, color=var.COLOR_BLANCO
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 170, 
+        text='SELECCIONA UN BONUS', screen=form.get('screen'), 
+        font_path=var.RUTA_FUENTE, font_size=50, color=var.COLOR_BLANCO
     )
 
     form['btn_select'] = Button(
@@ -39,38 +45,49 @@ def init_form_bonus(dict_form_data: dict, jugador: dict):
     base_form.forms_dict[dict_form_data.get('name')] = form
     return form
 
-def click_change_form(param: str):
-    base_form.stop_music()
-    base_form.play_music(base_form.forms_dict[param])
-    aux.cambiar_formulario_on_click(param)
+def click_change_form(form_enter_name: str):
+    aux.cambiar_formulario_on_click(form_enter_name)
+    # base_form.stop_music()
+    # base_form.play_music(base_form.forms_dict[param])
 
-def click_select_bonus(form_dict: dict):
-    option = form_dict.get('bonus_info')
+def click_select_bonus(dict_form_data: dict):
+    option = dict_form_data.get('bonus_info')
+    jugador = dict_form_data.get('jugador')
 
-    match option:
-        case 'X2':
-            jugador_mod.set_puntaje_actual(
-                form_dict.get('jugador'),
-                jugador_mod.get_puntaje_actual(form_dict.get('jugador')) * 2
-            )
-        case '+50':
-            jugador_mod.set_puntaje_actual(
-                form_dict.get('jugador'),
-                jugador_mod.get_puntaje_actual(form_dict.get('jugador')) + 50
-            )
+    nivel_cartas = aux.base_form.forms_dict['form_start_level']
+    nivel = nivel_cartas.get('nivel')
+
+    if option == 'SCORE X3':
+        anterior_puntaje = participante.get_score_participante(jugador)
+        nuevo_puntaje = anterior_puntaje * 3
+
+        print(f'ANTERIOR SCORE: {anterior_puntaje} | ACTUAL SCORE: {nuevo_puntaje}')
+        participante.set_score_participante(jugador, nuevo_puntaje)
+
+    else:
+        hp_inicial = participante.get_hp_inicial_participante(jugador)
+        hp_actual = participante.get_hp_participante(jugador)
+        hp_perdida = hp_inicial - hp_actual
+
+        hp_bonus = int(hp_perdida * 0.75)
+        hp_nuevo = hp_actual + hp_bonus
+
+        print(f'ANTERIOR HP: {hp_actual} | ACTUAL HP: {hp_nuevo}')
+        participante.set_hp_participante(jugador, hp_nuevo)
+
     # reproducir sonido de bonus 
     pg.time.wait(2000)
     click_change_form('form_start_level')
-
-def update_button_bonus(form_dict: dict, new_text: str):
-    form_dict['bonus_info'] = new_text
-    form_dict.get('widgets_list')[2].update_text(form_dict.get('bonus_info'), var.COLOR_NARANJA)
+ 
+def update_button_bonus(dict_form_data: dict, bonus_info: str):
+    dict_form_data['bonus_info'] = bonus_info
+    dict_form_data.get('widgets_list')[2].update_text(dict_form_data.get('bonus_info'), var.COLOR_NEGRO)
     
-def draw(form_dict: dict):
-    base_form.draw(form_dict)
-    base_form.draw_widgets(form_dict)
+def update(dict_form_data: dict):
+    base_form.update(dict_form_data)
 
-def update(form_dict: dict):
-    base_form.update(form_dict)
+def draw(dict_form_data: dict):
+    base_form.draw(dict_form_data)
+    base_form.draw_widgets(dict_form_data)
 
 

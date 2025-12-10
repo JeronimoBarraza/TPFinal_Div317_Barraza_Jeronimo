@@ -69,7 +69,7 @@ COORDENADA_CARTA_VISTA = (690, 106)
 
 # ------ TIEMPO CLOCK -------
 
-level_timer = 25
+level_timer = 5000
 
 nombres = [
     "Homero", "Zorro", "Ivan"

@@ -20,6 +20,9 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
     nivel_data['ruta_mazo'] = '' 
     nivel_data['screen'] = pantalla
     nivel_data['jugador'] = jugador
+
+    nivel_data['heal_available'] = True
+    nivel_data['shield_available'] = True
     
     nivel_data['enemigo'] = participante.inicializaar_participante(pantalla, nombre='enemigo')
     nivel_data['coords_iniciales_enemigo'] = (410,120)
@@ -63,6 +66,9 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
 
     return nivel_data
 
+def modificar_estado_bonus(nivel_data: dict, bonus: str):
+    nivel_data[f'{bonus}_available'] = False
+
 def actualizar_timer(nivel_data: dict):
     if nivel_data['level_timer'] > 0:
         tiempo_actual = pg.time.get_ticks()
@@ -102,10 +108,6 @@ def cargar_bd_cartas(nivel_data: dict):
             bd = aux.generar_bd(nivel_data.get('ruta_mazo'))
             nivel_data['cartas_mazo_juego'] = {"cartas": bd["cartas"]}
   
-    # print("STEP1 -> cartas_mazo_juego keys:", nivel_data.get('cartas_mazo_juego').keys())
-    # print("STEP1 -> cartas_mazo_juego['cartas'] type:", type(nivel_data['cartas_mazo_juego']['cartas']))
-    # print("STEP1 -> total cartas en JSON:", sum(len(v) for v in nivel_data['cartas_mazo_juego']['cartas'].values()) if isinstance(nivel_data['cartas_mazo_juego'].get('cartas'), dict) else len(nivel_data['cartas_mazo_juego'].get('cartas', [])))
-    
 def asignar_cartas_stage(nivel_data: dict, participantes: dict):
     
     rd.shuffle(nivel_data.get('cartas_mazo_preparadas'))
@@ -115,12 +117,9 @@ def asignar_cartas_stage(nivel_data: dict, participantes: dict):
 
     print(f"[DEBUG] {participantes['nombre']} cartas_asignadas: {len(participantes['cartas_asignadas'])}")
     print(f"[DEBUG] {participantes['nombre']} cartas_mazo: {len(participantes['cartas_mazo'])}")
-
     
 def generar_mazo(nivel_data: dict): 
     print('=============== GENERANDO MAZO FINAL ===============')
-    print("ENTRANDO FORM - enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
-
 
     if "cartas" in nivel_data["cartas_mazo_juego"]:
         mazo = nivel_data['cartas_mazo_juego']['cartas']['assets/decks/blue_deck_expansion_1']
@@ -173,6 +172,11 @@ def check_juego_terminado(nivel_data: dict):
     if mazo_esta_vacio(nivel_data) or tiempo_esta_terminado(nivel_data):
         nivel_data['juego_finalizado'] = True
 
+def hay_jugadores_con_cartas(nivel_data: dict):
+    jugador_con_carta = participante.get_cartas_restantes_participante(nivel_data.get('jugador'))
+    enemigo_con_carta = participante.get_cartas_restantes_participante(nivel_data.get('enemigo'))
+    return jugador_con_carta or enemigo_con_carta
+
 def reiniciar_nivel(jugador: dict, pantalla: pg.Surface, num_nivel: int):
     
     nivel_data = inicializar_nivel_cartas(jugador, pantalla, num_nivel)
@@ -215,7 +219,7 @@ def comparar_damage(nivel_data):
             score = atk_jugador - carta.get_def_carta(carta_enemigo)
             ganador_mano = 'JUGADOR'
             participante.restar_stats_participante(enemigo, carta_jugador, critical)
-            participante.set_score_participante(jugador,score)
+            participante.add_score_participante(jugador,score)
 
     return critical, ganador_mano
 
@@ -230,12 +234,22 @@ def chequear_ganador(nivel_data):
     if (participante.get_hp_participante(jugador) <= 0 or\
         (participante.get_hp_participante(jugador) < participante.get_hp_participante(enemigo)) and\
         (len(participante.get_cartas_restantes_participante(enemigo)) == 0)):
+
         setear_ganador(nivel_data, enemigo)
+
+        puntaje_jugador_actual = participante.get_score_participante(jugador) // 2
+        participante.set_score_participante(jugador, puntaje_jugador_actual)
        
     elif (participante.get_hp_participante(enemigo) <= 0 or\
         (participante.get_hp_participante(enemigo) <= participante.get_hp_participante(jugador)) and\
         (len(participante.get_cartas_restantes_participante(jugador)) == 0)):
         setear_ganador(nivel_data, jugador)
+
+def esta_finalizado(nivel_data: dict) -> bool:
+    return nivel_data.get('juego_finalizado')
+
+def obtner_ganador(nivel_data: dict) -> bool:
+    return nivel_data.get('ganador')
 
 def jugar_mano(nivel_data:dict):
     if not nivel_data.get('juego_finalizado'):

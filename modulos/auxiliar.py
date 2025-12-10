@@ -163,6 +163,11 @@ def guardar_info_cartas(ruta_archivo: str, dict_cards: dict):
     with open(ruta_archivo, 'w', encoding='utf-8') as file:
         json.dump(dict_cards, file, indent=4)
 
+def guardar_info_csv(informacion: str):
+    with open(var.RUTA_RANKING_CSV, 'a', encoding='utf-8') as file:
+        file.write(informacion)
+        print(f'INFORMACION GUARDADA: - {informacion} ')
+
 def achicar_imagen_card(path_imagen: str, porcentaje: int):
     imagen_raw = pg.image.load(path_imagen)
     alto = int(imagen_raw.get_height() * float(f'0.{porcentaje}'))

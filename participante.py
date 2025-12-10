@@ -46,6 +46,7 @@ def get_hp_participante(participante: dict):
     """
     return participante.get('hp_actual')
 
+
 def get_attack_inicial_participante(participante: dict):
     """ Retonarmos el attack inicial del participante en cuestión
 
@@ -89,6 +90,9 @@ def set_nombre_participante(participante: dict, nuevo_nombre: str):
         _type_: Retorna la hp
     """
     participante['nombre'] = nuevo_nombre
+    
+def set_hp_participante(participante: dict, hp_actual: int):
+    participante['hp_actual'] = hp_actual
 
 def get_cartas_iniciales_participante(participante: dict) -> list[dict]:
     """ Esta función crea el mazo del participante 
@@ -172,6 +176,9 @@ def set_score_participante(participante: dict, score: int):
         score (int): El score total en entero
     """
     participante['score'] = score
+
+def get_score_participante(participante: dict) -> int:
+    return participante.get('score')
 
 def add_score_participante(participante: dict, score: int):
     participante['score'] += score

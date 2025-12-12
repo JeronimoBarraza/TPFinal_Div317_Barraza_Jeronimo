@@ -120,8 +120,8 @@ def cargar_configs(path: str) -> dict:
     return configuraciones
 
 def cambiar_formulario_on_click(parametro: str):
-    print(parametro)
     base_form.set_active(parametro)
+    print(parametro)
 
 def generar_bd(root_path_cards: str):
     carta_dict= {
@@ -180,3 +180,4 @@ def reducir(callback, iterable: list):
     for elemento in iterable:
         suma += callback(elemento)
     return suma
+    

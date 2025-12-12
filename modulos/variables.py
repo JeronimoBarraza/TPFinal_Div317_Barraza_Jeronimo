@@ -89,7 +89,7 @@ RUTA_SONIDO_CLICK = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Drago
 
 BOTON_JUGAR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_jugar.png'
 
-BOTON_HISTORIA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_historia.png'
+BOTON_HISTORIA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_opciones.png'
 
 BOTON_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_ranking.png'
 

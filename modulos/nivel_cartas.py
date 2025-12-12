@@ -241,7 +241,6 @@ def jugar_mano(nivel_data:dict):
     return None
 
 def draw_jugadores(nivel_data: dict):
-
     if nivel_data is None:
         return
     

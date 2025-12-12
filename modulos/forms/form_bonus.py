@@ -55,13 +55,13 @@ def click_select_bonus(dict_form_data: dict):
     bonus_info = dict_form_data.get('bonus_info')
     jugador = dict_form_data.get('jugador')
 
-    start_level_form = aux.base_form.forms_dict['form_start_level']
-    level = start_level_form.get('level')
+    form_dict = aux.base_form.forms_dict['form_start_level']
+    level = form_dict.get('level')
 
     if bonus_info == 'HEAL':
-        bonus = 'heal'
+        bonus = 'HEAL'
     else:
-        bonus = 'shield'
+        bonus = 'SHIELD'
 
     nivel_cartas.modificar_estado_bonus(level, bonus)
 
@@ -72,19 +72,18 @@ def click_select_bonus(dict_form_data: dict):
         print(f'ANTERIOR SCORE: {anterior_puntaje} | ACTUAL SCORE: {nuevo_puntaje}')
         participante.set_score_participante(jugador, nuevo_puntaje)
 
-    else:
+    if bonus_info == 'HEAL':
         hp_inicial = participante.get_hp_inicial_participante(jugador)
         hp_actual = participante.get_hp_participante(jugador)
         hp_perdida = hp_inicial - hp_actual
 
+        print(hp_perdida)
         hp_bonus = int(hp_perdida * 0.75)
         hp_nuevo = hp_actual + hp_bonus
 
         print(f'ANTERIOR HP: {hp_actual} | ACTUAL HP: {hp_nuevo}')
         participante.set_hp_participante(jugador, hp_nuevo)
 
-    # reproducir sonido de bonus 
-    pg.time.wait(2000)
     click_change_form('form_start_level')
  
 def update_button_bonus(dict_form_data: dict, bonus_info: str):

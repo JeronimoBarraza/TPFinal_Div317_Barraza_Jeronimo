@@ -15,8 +15,6 @@ def pythonisa():
     corriendo = True
     reloj = pg.time.Clock()
     datos_juego = {
-        "puntuacion": 0,
-        "cantidad_vidas": var.CANTIDAD_VIDAS,
         "player": participante.inicializaar_participante(pantalla, 'jugador'),
         "volumen_musica": 100,
         "tiempo_finalizado": None,

@@ -1,5 +1,4 @@
 import pygame as pg
-import sys
 import modulos.forms.base_form as base_form
 import modulos.nivel_cartas as nivel_cartas
 import modulos.variables as var
@@ -7,7 +6,7 @@ import modulos.auxiliar as aux
 import modulos.forms.form_enter_name as enter_name
 import modulos.forms.form_bonus as form_bonus
 import modulos.carta as carta_jugador
-import participante as participante
+import participante as participante_juego
 from utn_fra.pygame_widgets import (
     Button, Label 
 )
@@ -16,7 +15,7 @@ def init_form_start_level(dict_form_data: dict):
 
     form = base_form.create_base_form(dict_form_data)
 
-    form['jugador'] = participante.inicializaar_participante(dict_form_data.get('screen'), nombre='jugador')
+    form['jugador'] = dict_form_data.get('jugador')
 
     form['actual_level'] = 1
 
@@ -25,11 +24,7 @@ def init_form_start_level(dict_form_data: dict):
     form['clock'] = pg.time.Clock()
     form['bonus_1_used'] = False
     form['bonus_2_used'] = False
-    # form['first_last_timer'] = pg.time.get_ticks()
-    # form['level_timer'] = var.level_timer
-
-    # nivel_data = nivel_cartas.inicializar_nivel_cartas(form['jugador'], form['screen'],form['level_number'] )
-    # dict_form_data['nivel'] = nivel_data
+    
 
     # ============ LBLS ============ #
     
@@ -134,17 +129,6 @@ def init_form_start_level(dict_form_data: dict):
     base_form.forms_dict[dict_form_data.get('name')] = form
     return form
 
-# def select_bonus(form_y_bonus_name: dict):
-#     base_form.stop_music()
-#     base_form.play_music(base_form.forms_dict['form_bonus'])
-#     base_form.set_active('form_bonus')
-
-#     form_bonus.update_button_bonus(base_form.forms_dict['form_bonus'],form_y_bonus_name.get('bonus'))
-#     if form_y_bonus_name.get('bonus') == 'X2':
-#         form_y_bonus_name.get('form')['bonus_1_used'] = True
-#     else:
-#         form_y_bonus_name.get('form')['bonus_2_used'] = True
-
 def jugar_mano(dict_form_data: dict):
     nivel = dict_form_data.get('level')
 
@@ -155,7 +139,7 @@ def jugar_mano(dict_form_data: dict):
     elif not nivel_cartas.hay_jugadores_con_cartas(nivel) and nivel_cartas.esta_finalizado(nivel):
         print('EL JUEGO ESTÁ TERMINADO')
 
-        if participante.get_nombre_participante(
+        if participante_juego.get_nombre_participante(
             nivel_cartas.obtner_ganador(nivel)
         ) == 'enemigo':
             win_status = False
@@ -168,7 +152,6 @@ def jugar_mano(dict_form_data: dict):
         base_form.set_active('form_enter_name') 
 
 def call_bonus_form(params: dict):
-    print(f'DENTRO DE LA FUNCION CALL BONUS')
     
     dict_form_data = params.get('form')
     bonus_info = params.get('bonus')
@@ -198,25 +181,27 @@ def update_lbls_cards_info(dict_form_data: dict):
     mazo_jugador = dict_form_data.get('level').get('jugador').get('cartas_mazo_usadas')
 
     if mazo_enemigo and mazo_jugador: 
-        ultima_carta_j = participante.get_carta_actual_participante(dict_form_data.get('level').get('jugador'))
-        ultima_carta_e = participante.get_carta_actual_participante(dict_form_data.get('level').get('enemigo'))
+        ultima_carta_j = participante_juego.get_carta_actual_participante(dict_form_data.get('level').get('jugador'))
+        ultima_carta_e = participante_juego.get_carta_actual_participante(dict_form_data.get('level').get('enemigo'))
 
 def update_lbls_participantes(dict_form_data: dict, tipo_participante: str):
     participante_jugador = dict_form_data.get('level').get('jugador')
 
-    dict_form_data[f'lbl_enemigo_hp'].update_text(text=f'HP: {participante.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_enemigo_atk'].update_text(text=f'ATK: {participante.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_enemigo_def'].update_text(text=f'DEF: {participante.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_enemigo_hp'].update_text(text=f'HP: {participante_juego.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_enemigo_atk'].update_text(text=f'ATK: {participante_juego.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_enemigo_def'].update_text(text=f'DEF: {participante_juego.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
 
     participante_jugador = dict_form_data.get('level').get('enemigo')
 
-    dict_form_data[f'lbl_jugador_hp'].update_text(text=f'HP: {participante.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_jugador_atk'].update_text(text=f'ATK: {participante.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_jugador_def'].update_text(text=f'DEF: {participante.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_jugador_hp'].update_text(text=f'HP: {participante_juego.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_jugador_atk'].update_text(text=f'ATK: {participante_juego.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_jugador_def'].update_text(text=f'DEF: {participante_juego.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
+
+    # print("[DEBUG LABEL] Leyendo HP en labels:", participante_jugador.get("hp_actual"))
 
 def actualizar_puntaje(dict_form_data: dict):
     participante = dict_form_data.get('level').get('jugador')
-    score = participante.get('score')
+    score = participante_juego.get_score_participante(participante)
     dict_form_data.get('lbl_score').update_text(text=f'Score: {score}', color=var.COLOR_BLANCO)   
 
 def draw_bonus_widgets(dict_form_data: dict):
@@ -246,7 +231,6 @@ def draw(dict_form_data: dict):
 def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     dict_form_data['lbl_clock'].update_text(f'TIME LEFT: {nivel_cartas.obtener_tiempo(dict_form_data.get('level'))}', color=var.COLOR_BLANCO)
     base_form.update(dict_form_data)
-    nivel_cartas.update(dict_form_data.get('level'))
 
     nivel_cartas.update(dict_form_data.get('level'))
     update_lbls_cards_info(dict_form_data)

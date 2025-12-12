@@ -90,7 +90,7 @@ def set_nombre_participante(participante: dict, nuevo_nombre: str):
         _type_: Retorna la hp
     """
     participante['nombre'] = nuevo_nombre
-    
+
 def set_hp_participante(participante: dict, hp_actual: int):
     participante['hp_actual'] = hp_actual
 

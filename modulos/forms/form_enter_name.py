@@ -23,26 +23,26 @@ def init_form_enter_name(dict_form_data: dict, jugador: dict):
         screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=60, color=var.COLOR_NEGRO
     )
     form['subtitle'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 80, text='Escribe tu nombre: ', 
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 20, text='Escribe tu nombre: ', 
         screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=50, color=var.COLOR_BLANCO
     )
     form['subtitle_score'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 20, text=f'{particip.get_score_participante(form.get('jugador'))}', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=30, color=var.COLOR_BLANCO
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 60, text=f'{particip.get_score_participante(form.get('jugador'))}', 
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=40, color=var.COLOR_BLANCO
     )
 
     form['lbl_nombre_texto'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 30, text=f'', 
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 115, text=f'', 
         screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=30, color=var.COLOR_BLANCO
     )
 
     form['text_box'] = TextBox(
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 40, 
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 120, 
         text='__________________',screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25, color=var.COLOR_NEGRO
     )
 
     form['btn_confirm_name'] = Button(
-        x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2 + 100, 
+        x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2 + 250, 
         text="CONFIRMAR NOMBRE",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25,
         on_click=submit_name, on_click_param=form
     )

@@ -68,7 +68,7 @@ COORDENADA_CARTA_VISTA = (690, 106)
 
 # ------ TIEMPO CLOCK -------
 
-level_timer = 5000
+level_timer = 200
 
 nombres = [
     "Homero", "Zorro", "Ivan"
@@ -95,3 +95,9 @@ BOTON_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ba
 BOTON_SALIR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_salir.png'
 
 BOTON_VOLVER = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_volver.png'
+
+# ------ BOTONES ICON ------
+
+BOTON_ICON_HEAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/icon_heal.png'
+
+BOTON_ICON_SHIELD = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/icon_shield.png'

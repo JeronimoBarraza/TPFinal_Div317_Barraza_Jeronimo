@@ -8,7 +8,7 @@ import modulos.forms.form_bonus as form_bonus
 import modulos.carta as carta_jugador
 import participante as participante_juego
 from utn_fra.pygame_widgets import (
-    Button, Label 
+    Button, Label, ImageLabel
 )
 
 def init_form_start_level(dict_form_data: dict):
@@ -87,6 +87,12 @@ def init_form_start_level(dict_form_data: dict):
         screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
+    form['lbl_heal'] = ImageLabel(
+        x=1130, y=175, text=f'', screen=form.get('screen'), 
+        image_path=var.BOTON_ICON_HEAL, width=60, height=60,
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
+    )
+
     # ============ BOTONES ============ #
 
     form['btn_bonus_1'] = Button(
@@ -152,6 +158,10 @@ def jugar_mano(dict_form_data: dict):
         base_form.set_active('form_enter_name') 
 
 def call_bonus_form(params: dict):
+
+    level = params['form'].get('level')
+    level['lbl_heal_used'] = True
+    level['heal_available'] = False
     
     dict_form_data = params.get('form')
     bonus_info = params.get('bonus')
@@ -222,11 +232,22 @@ def update_bonus_widgets(dict_form_data: dict):
     if level.get('shield_available'):
         widget_bonus[0].update()
 
+def draw_icon_heal(dict_form_data):
+    level = dict_form_data.get('level')
+    if level.get('lbl_heal_used'):
+        dict_form_data.get('lbl_heal').draw()
+
+def update_icon_heal(dict_form_data): 
+    level = dict_form_data.get('level')
+    if level.get('lbl_heal_used'):
+        dict_form_data.get('lbl_heal').update([])
+
 def draw(dict_form_data: dict):
     base_form.draw(dict_form_data)
     nivel_cartas.draw_jugadores(dict_form_data.get('level'))    
     base_form.draw_widgets(dict_form_data)
-    draw_bonus_widgets(dict_form_data)  
+    draw_bonus_widgets(dict_form_data)
+    draw_icon_heal(dict_form_data)
 
 def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     dict_form_data['lbl_clock'].update_text(f'TIME LEFT: {nivel_cartas.obtener_tiempo(dict_form_data.get('level'))}', color=var.COLOR_BLANCO)
@@ -238,5 +259,6 @@ def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     actualizar_puntaje(dict_form_data)
     update_lbls_participantes(dict_form_data, tipo_participante='enemigo')
     update_bonus_widgets(dict_form_data)
+    update_icon_heal(dict_form_data)
     
     events_handler(cola_eventos)

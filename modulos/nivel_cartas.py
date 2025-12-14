@@ -19,6 +19,9 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
     nivel_data['screen'] = pantalla
     nivel_data['jugador'] = jugador
 
+    nivel_data['lbl_heal_used'] = False
+    nivel_data['lbl_shield_used'] = False
+
     nivel_data['heal_available'] = True
     nivel_data['shield_available'] = True
     
@@ -36,11 +39,11 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
 
     print("Cartas enemigo:", len(nivel_data['enemigo']['cartas_asignadas']))
 
-    for carta in nivel_data['enemigo']['cartas_mazo']:
-        # print('path reverso:', carta.get('path_imagen_reverso'))
-        continue
+    # for carta in nivel_data['enemigo']['cartas_mazo']:
+    #     # print('path reverso:', carta.get('path_imagen_reverso'))
+    #     continue
 
-    draw_jugadores(nivel_data)
+    # draw_jugadores(nivel_data)
 
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_inicial', nivel_data['coords_iniciales_enemigo'])
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_jugado', nivel_data['coords_finales_enemigo'])
@@ -203,8 +206,16 @@ def comparar_damage(nivel_data):
 
     return critical, ganador_mano
 
-def setear_ganador(nivel_data: dict, participante: dict):
-    nivel_data['ganador'] = participante
+def setear_ganador(nivel_data: dict, participante_jugador: dict):
+    puntaje_extra = nivel_data.get('level_timer')
+    puntaje_actual = participante.get_score_participante(participante_jugador)
+    participante.add_score_participante(participante_jugador, puntaje_extra)
+
+    puntaje_nuevo = participante.get_score_participante(participante_jugador)
+
+    print(f'Puntaje actual: {puntaje_actual} - Puntaje nuevo: {puntaje_nuevo}')
+
+    nivel_data['ganador'] = participante_jugador
     nivel_data['juego_finalizado'] = True
 
 def chequear_ganador(nivel_data):

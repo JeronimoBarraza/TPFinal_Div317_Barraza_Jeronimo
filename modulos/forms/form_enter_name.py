@@ -12,6 +12,7 @@ def init_form_enter_name(dict_form_data: dict, jugador: dict):
 
     form['jugador'] = jugador
     form['confirm_name'] = False
+    form['limit_char'] = 12
 
     form['title'] = Label (
         x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, 
@@ -37,7 +38,7 @@ def init_form_enter_name(dict_form_data: dict, jugador: dict):
 
     form['text_box'] = TextBox(
         x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 40, 
-        text='________________',screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25, color=var.COLOR_NEGRO
+        text='__________________',screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25, color=var.COLOR_NEGRO
     )
 
     form['btn_confirm_name'] = Button(
@@ -82,7 +83,7 @@ def update(dict_form_data: dict, event_list: list):
     dict_form_data['score'] = particip.get_score_participante(dict_form_data.get('jugador'))    
 
     dict_form_data['subtitle_score'].update_text(f'Score: {dict_form_data['score']}', var.COLOR_BLANCO)
-    dict_form_data['lbl_nombre_texto'].update_text(f'{dict_form_data.get('text_box').writing.upper()}', var.COLOR_BLANCO)
+    dict_form_data['lbl_nombre_texto'].update_text(f'{dict_form_data.get('text_box').writing.upper()[:dict_form_data.get('limit_char')]}', var.COLOR_BLANCO)
 
     dict_form_data.get('text_box').update(event_list)
     base_form.update(dict_form_data)

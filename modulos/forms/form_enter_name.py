@@ -77,7 +77,9 @@ def submit_name(form_dict: dict):
     aux.guardar_info_csv(data_to_csv)
 
     form_dict['confirm_name'] = True
-    base_form.set_active('form_ranking')    
+    clear_text(form_dict)    
+    
+    base_form.set_active('form_ranking')
 
 def update(dict_form_data: dict, event_list: list):
     dict_form_data['score'] = particip.get_score_participante(dict_form_data.get('jugador'))    
@@ -85,6 +87,7 @@ def update(dict_form_data: dict, event_list: list):
     dict_form_data['subtitle_score'].update_text(f'Score: {dict_form_data['score']}', var.COLOR_BLANCO)
     dict_form_data['lbl_nombre_texto'].update_text(f'{dict_form_data.get('text_box').writing.upper()[:dict_form_data.get('limit_char')]}', var.COLOR_BLANCO)
 
+    dict_form_data.get('text_box').writing = dict_form_data.get('text_box').writing[:dict_form_data.get('limit_char')]
     dict_form_data.get('text_box').update(event_list)
     base_form.update(dict_form_data)
 

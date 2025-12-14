@@ -145,19 +145,10 @@ def barajar_mazos_nivel(nivel_data: dict):
     print("Jugador mazo:", len(nivel_data['jugador']['cartas_mazo']))
     print("Enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
 
-def tiempo_esta_terminado(nivel_data: dict):
-    return nivel_data.get('level_timer') <= 0
-
-def mazo_esta_vacio(nivel_data: dict):
-    return len(nivel_data.get('cartas_mazo_juego_final')) == 0 
-
-def check_juego_terminado(nivel_data: dict):
-    if mazo_esta_vacio(nivel_data) or tiempo_esta_terminado(nivel_data):
-        nivel_data['juego_finalizado'] = True
-
 def hay_jugadores_con_cartas(nivel_data: dict):
     jugador_con_carta = participante.get_cartas_restantes_participante(nivel_data.get('jugador'))
     enemigo_con_carta = participante.get_cartas_restantes_participante(nivel_data.get('enemigo'))
+
     return jugador_con_carta or enemigo_con_carta
 
 def reiniciar_nivel(jugador: dict, pantalla: pg.Surface, num_nivel: int):
@@ -221,19 +212,25 @@ def setear_ganador(nivel_data: dict, participante_jugador: dict):
 def chequear_ganador(nivel_data):
     jugador = nivel_data['jugador']
     enemigo = nivel_data['enemigo']
+    hay_tiempo_disponible = nivel_data.get('level_timer') > 0
 
-    if (participante.get_hp_participante(jugador) <= 0 or\
-        (participante.get_hp_participante(jugador) < participante.get_hp_participante(enemigo)) and\
-        (len(participante.get_cartas_restantes_participante(enemigo)) == 0)):
+    jugador_perdio = (participante.get_hp_porcent_participante(jugador) <= 0 or\
+        (participante.get_hp_porcent_participante(jugador) < participante.get_hp_porcent_participante(enemigo)))
+    
+    enemigo_perdio = (participante.get_hp_porcent_participante(enemigo) <= 0 or\
+        (participante.get_hp_porcent_participante(enemigo) <= participante.get_hp_porcent_participante(jugador)))
+    
+    enemigo_sin_cartas = len(participante.get_cartas_restantes_participante(enemigo)) == 0
+    jugador_sin_cartas = len(participante.get_cartas_restantes_participante(jugador)) == 0
 
+    if jugador_perdio and\
+       (not hay_tiempo_disponible or\
+        (hay_tiempo_disponible and jugador_sin_cartas)):
         setear_ganador(nivel_data, enemigo)
 
-        puntaje_jugador_actual = participante.get_score_participante(jugador) // 2
-        participante.set_score_participante(jugador, puntaje_jugador_actual)
-       
-    elif (participante.get_hp_participante(enemigo) <= 0 or\
-        (participante.get_hp_participante(enemigo) <= participante.get_hp_participante(jugador)) and\
-        (len(participante.get_cartas_restantes_participante(jugador)) == 0)):
+    elif enemigo_perdio and\
+       (not hay_tiempo_disponible or\
+        (hay_tiempo_disponible and enemigo_sin_cartas)):
         setear_ganador(nivel_data, jugador)
 
 def esta_finalizado(nivel_data: dict) -> bool:
@@ -247,26 +244,14 @@ def jugar_mano(nivel_data:dict):
         jugar_mano_stage(nivel_data)
 
         critical, ganador_mano = comparar_damage(nivel_data)
-        chequear_ganador(nivel_data)
         return critical, ganador_mano
     return None
 
 def draw_jugadores(nivel_data: dict):
-    if nivel_data is None:
-        return
-    
     # Dibujamos los participantes
     participante.draw_participante(nivel_data['jugador'], nivel_data['screen'])
     participante.draw_participante(nivel_data['enemigo'], nivel_data['screen'])
     
 def update(nivel_data: dict):
     actualizar_timer(nivel_data)
-    # eventos(nivel_data, cola_eventos)
-    # check_juego_terminado(nivel_data)
-    # if juego_terminado(nivel_data) and not nivel_data.get('puntaje_guardado'): 
-    #     jugador_humano.actualizar_puntaje_total(nivel_data['jugador'])
-    #     # nombre_elegido = rd.choice(var.nombres)
-    #     # jugador_humano.set_nombre(nivel_data.get("jugador"), nombre_elegido)
-       
-    #     nivel_data['puntaje_guardado'] = True
-    #     print(f'Puntos: {jugador_humano.get_puntaje_total(nivel_data['jugador'])}')
+    chequear_ganador(nivel_data)

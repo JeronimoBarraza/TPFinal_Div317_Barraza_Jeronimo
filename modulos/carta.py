@@ -1,6 +1,6 @@
+import os 
 import pygame as pg
 import random as rd
-import os 
 import modulos.auxiliar as aux
 
 """

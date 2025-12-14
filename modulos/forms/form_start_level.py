@@ -140,9 +140,14 @@ def jugar_mano(dict_form_data: dict):
 
     if nivel_cartas.hay_jugadores_con_cartas(nivel):
         critical, ganador_mano = nivel_cartas.jugar_mano(nivel)
-
         print(f'El ganador de la mano es: {ganador_mano}')
-    elif not nivel_cartas.hay_jugadores_con_cartas(nivel) and nivel_cartas.esta_finalizado(nivel):
+
+def verificar_terminado(dict_form_data: dict):
+    nivel = dict_form_data.get('level')
+
+    if nivel_cartas.esta_finalizado(nivel):
+        nivel['juego_finalizado'] = True
+
         print('EL JUEGO ESTÁ TERMINADO')
 
         if participante_juego.get_nombre_participante(
@@ -154,7 +159,6 @@ def jugar_mano(dict_form_data: dict):
 
         form_enter_name = base_form.forms_dict.get('form_enter_name')
         enter_name.update_texto_victoria(form_enter_name, win_status)
-
         base_form.set_active('form_enter_name') 
 
 def call_bonus_form(params: dict):
@@ -260,5 +264,6 @@ def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     update_lbls_participantes(dict_form_data, tipo_participante='enemigo')
     update_bonus_widgets(dict_form_data)
     update_icon_heal(dict_form_data)
+    verificar_terminado(dict_form_data)
     
     events_handler(cola_eventos)

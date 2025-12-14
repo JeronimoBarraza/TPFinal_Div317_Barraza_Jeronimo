@@ -46,6 +46,13 @@ def get_hp_participante(participante: dict):
     """
     return participante.get('hp_actual')
 
+def get_hp_porcent_participante(participante: dict) -> float:
+    
+    hp_actual = get_hp_participante(participante)
+    hp_inicial = get_hp_inicial_participante(participante)
+    
+    porcent_actual = hp_actual * 100 / hp_inicial
+    return porcent_actual
 
 def get_attack_inicial_participante(participante: dict):
     """ Retonarmos el attack inicial del participante en cuestión

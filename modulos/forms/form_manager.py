@@ -52,7 +52,7 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "botones": {
                     "music_on": '',
                     "music_off": '',
-                    "volver": './btn_volver.png'
+                    "volver": var.BOTON_VOLVER
                 }
             }
         ),
@@ -67,7 +67,9 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "sound_path": var.RUTA_SONIDO_CLICK,
                 "background_path": var.IMAGEN_RANKING,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
-                "botones": {"volver": 'btn_volver.png'},
+                "botones": {
+                    "volver": var.BOTON_VOLVER
+                    },
             },  
                jugador=form.get('jugador')
         ),
@@ -159,7 +161,7 @@ def forms_update(form_manager: dict, lista_eventos: pg.event.Event):
     
     elif form_manager.get('form_list')[6].get('active'):
         form_bonus.update(form_manager.get('form_list')[6])
-        form_bonus.draw(form_manager.get('form_list')[6]) 
+        form_bonus.draw(form_manager.get('form_list')[6])
         
 def update(form_manager: dict, lista_eventos: pg.event.Event):
     forms_update(form_manager, lista_eventos)

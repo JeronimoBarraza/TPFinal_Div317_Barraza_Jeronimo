@@ -31,40 +31,40 @@ def init_form_start_level(dict_form_data: dict):
     form['lbl_clock'] = Label(
         x=var.DIMENSION_PANTALLA[0] // 2, y=30, 
         text=f'TIME LEFT: {nivel_cartas.obtener_tiempo(form.get('level'))}',
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=45, color=var.COLOR_BLANCO) 
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=45, color=var.COLOR_BLANCO) 
      
     form['lbl_score'] = Label(
         x=105, y=35, text=f'Score: 0', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=45, color=var.COLOR_BLANCO)
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=45, color=var.COLOR_BLANCO)
 
     form['lbl_carta_e'] = Label(
         x=195, y=215, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=20)
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=20)
     
     form['lbl_carta_p'] = Label(
         x=195, y=550, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=20)
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=20)
     
     # ============ LBL ENEMIGO ============ #
     
     form['lbl_enemigo_hp'] = Label(
         x=175, y=190, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_enemigo_atk'] = Label(
         x=135, y=230, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_enemigo_def'] = Label(
         x=240, y=230, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     # ============ LBL JUGADOR ============ #
@@ -72,38 +72,38 @@ def init_form_start_level(dict_form_data: dict):
     form['lbl_jugador_hp'] = Label(
         x=190, y=520, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_jugador_atk'] = Label(
         x=140, y=555, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_jugador_def'] = Label(
         x=240, y=555, 
         text=f'', 
-        screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     # ============ BOTONES ============ #
 
     form['btn_bonus_1'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2 + 560, y=var.DIMENSION_PANTALLA[1] // 2 + 220,
-        text='Shield', screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=40,
+        text='Shield', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=40,
         color=var.COLOR_NEGRO, on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'SCORE X3'} 
     )
 
     form['btn_bonus_2'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2 + 560, y=var.DIMENSION_PANTALLA[1] // 2 + 270,
-        text='Heal', screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=40,
+        text='Heal', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=40,
         color=var.COLOR_NEGRO, on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'HEAL'} 
     )
 
     form['btn_play'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2 + 560, y= var.DIMENSION_PANTALLA[1] // 2 + 30, 
-        text="PLAY HAND",screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=35,
+        text="PLAY HAND",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=35,
         on_click=jugar_mano, on_click_param=form
     )
 

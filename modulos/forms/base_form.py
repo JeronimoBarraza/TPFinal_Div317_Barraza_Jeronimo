@@ -31,7 +31,7 @@ def play_music(form_dict: dict):
 def stop_music():
     pg.mixer.music.stop()
 
-def set_active(name: str):
+def set_active(name: str):    
     for form in forms_dict.values():
         form['active'] = False
     
@@ -49,6 +49,6 @@ def draw_widgets(form_data: dict):
 def draw(form_data: dict):
     form_data['screen'].blit(form_data.get('surface'), form_data.get('rect'))
     
-def update(form_data: dict):
+def update(form_data: dict):    
     update_widgets(form_data)
     

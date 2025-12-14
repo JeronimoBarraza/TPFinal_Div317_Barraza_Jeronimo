@@ -50,15 +50,15 @@ def crear_cuadro(dimensiones: tuple, coordenadas: tuple, color: tuple) -> dict:
     cuadro['superficie'].fill(pg.Color(color))
     return cuadro
 
-def crear_boton(pantalla: pg.Surface, texto: str, ruta_fuente: str, dimensiones: tuple, coordenadas: tuple, color_fondo: tuple, color_texto: tuple):
-    cuadro = crear_cuadro(dimensiones,coordenadas, color_fondo)
-    cuadro['texto'] = texto
-    cuadro['pantalla'] = pantalla
-    cuadro['color_texto'] = color_texto
-    cuadro['color_fondo'] = color_fondo
-    cuadro['ruta_fuente'] = ruta_fuente
-    cuadro['padding'] = (10,10)
-    return cuadro
+# def crear_boton(pantalla: pg.Surface, texto: str, fuente.halimount: str, dimensiones: tuple, coordenadas: tuple, color_fondo: tuple, color_texto: tuple):
+#     cuadro = crear_cuadro(dimensiones,coordenadas, color_fondo)
+#     cuadro['texto'] = texto
+#     cuadro['pantalla'] = pantalla
+#     cuadro['color_texto'] = color_texto
+#     cuadro['color_fondo'] = color_fondo
+#     cuadro['fuente.halimount'] = fuente.halimount
+#     cuadro['padding'] = (10,10)
+#     return cuadro
 
 
 def mostrar_boton(boton_dict):
@@ -66,7 +66,7 @@ def mostrar_boton(boton_dict):
         boton_dict.get('superficie'),
         boton_dict.get('texto'),
         boton_dict.get('padding'),
-        boton_dict.get('ruta_fuente'),
+        boton_dict.get('fuente.halimount'),
         boton_dict.get('color_texto')
     )
 

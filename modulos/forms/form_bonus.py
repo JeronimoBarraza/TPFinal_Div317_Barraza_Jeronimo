@@ -18,24 +18,24 @@ def init_form_bonus(dict_form_data: dict, jugador: dict):
     form['title'] = Label (
         x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, 
         text=var.TITULO_JUEGO, screen=form.get('screen'), 
-        font_path=var.RUTA_FUENTE, font_size=70, color=var.COLOR_BLANCO
+        font_path=var.FUENTE_HALIMOUNT, font_size=70, color=var.COLOR_BLANCO
     )
 
     form['subtitle'] = Label (
         x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 170, 
         text='SELECCIONA UN BONUS', screen=form.get('screen'), 
-        font_path=var.RUTA_FUENTE, font_size=50, color=var.COLOR_BLANCO
+        font_path=var.FUENTE_HALIMOUNT, font_size=50, color=var.COLOR_BLANCO
     )
 
     form['btn_select'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2, 
-        text=form.get('bonus_info'),screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25, color=var.COLOR_NEGRO,
+        text=form.get('bonus_info'),screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25, color=var.COLOR_NEGRO,
         on_click=click_select_bonus, on_click_param=form
     )
 
     form['btn_back'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2 + 250, 
-        text="CANCELAR",screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25, color=var.COLOR_NEGRO,
+        text="CANCELAR",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25, color=var.COLOR_NEGRO,
         on_click=click_change_form, on_click_param='form_start_level'
     )
 

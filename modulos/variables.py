@@ -19,8 +19,7 @@ FPS = 60
 
 pg.font.init()
 
-RUTA_FUENTE = './modulos/forms/Halimount.otf'
-FUENTE_HALIMOUNT = pg.font.Font(RUTA_FUENTE, 25)
+FUENTE_HALIMOUNT = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/modulos/forms/Halimount.otf'
 
 FUENTE_ARIAL = pg.font.SysFont('Arial', 20)
 
@@ -94,3 +93,5 @@ BOTON_HISTORIA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_B
 BOTON_RANKING = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_ranking.png'
 
 BOTON_SALIR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_salir.png'
+
+BOTON_VOLVER = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_volver.png'

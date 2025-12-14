@@ -9,22 +9,24 @@ def init_form_pause(dict_form_data: dict):
     form = base_form.create_base_form(dict_form_data)
 
     form['title'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, text=var.TITULO_JUEGO, screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=70, 
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, 
+        text=var.TITULO_JUEGO, screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=70, 
     )
 
     form['subtitle'] = Label (
-        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 170, text='PAUSE', screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=70, 
+        x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 170, text='PAUSE', 
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=70, 
     )
 
     form['btn_back'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2 + 175, 
-        text="VOLVER AL MENU",screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25,
+        text="VOLVER AL MENU",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25,
         on_click=click_change_form, on_click_param='form_main_menu'
     )
 
     form['btn_resume'] = Button(
         x=var.DIMENSION_PANTALLA[0] // 2, y= var.DIMENSION_PANTALLA[1] // 2 + 250, 
-        text="VOLVER AL JUEGO",screen=form.get('screen'), font_path=var.RUTA_FUENTE, font_size=25,
+        text="VOLVER AL JUEGO",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25,
         on_click=click_change_form, on_click_param='form_start_level'
     )
 

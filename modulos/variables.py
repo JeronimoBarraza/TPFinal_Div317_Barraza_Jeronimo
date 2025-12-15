@@ -43,7 +43,17 @@ IMAGEN_PAUSE = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Bal
 
 IMAGEN_CARTA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/background_cards.png'
 
-IMAGEN_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/fondo_tutorial_2.png'
+IMAGEN_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_jugar_tutorial.png'
+
+IMG_HEAL_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_heal_tutorial.png'
+
+IMG_SHIELD_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_test.jpg'
+
+IMG_SCORE_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_timer_tutorial.png'
+
+IMG_TIMER_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/img_score_tutorial.jpg'
+
+IMG_RANKING_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/fondo_tutorial_2.png'
 
 # ------- VIDAS --------
 

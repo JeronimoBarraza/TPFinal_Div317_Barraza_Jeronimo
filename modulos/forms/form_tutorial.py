@@ -19,36 +19,48 @@ def init_form_tutorial(dict_form_data: dict):
     form['click_previo'] = False        
 
     form['textos_tutorial'] = [
-        "Al presionar el boton play_hand, funciona para que empiece la partida y \n muestre tanto la carta del jugador como la del enemigo.",
-        "El boton es un bonus que lo que hace es solamente por esa ronda, el daño que deberías recibir vos, se lo das a tu enemigo. generando el famoso ",
-        "El boton heal es un bonus que lo que hace es curarte un cierto porcentaje de vida",
-        "El label Score es el puntaje progresivo, que se va actualizando cada ronda jugada, si ganas sumas, si empatas/perdes se mantiene",
-        "El label TIMER es el tiempo de la partida, donde arranca en 5000 y va disminuyendo",
-        "Aqui podes ver el ranking.\nMuestra los mejores puntajes del juego."
+        [
+            "Al presionar el boton play_hand",
+            "funciona para que empiece la partida y",
+            "muestre tanto la carta del jugador como la del enemigo."
+        ],
+        [
+            "El boton heal es un bonus",
+            "que lo que hace es curarte un cierto porcentaje de vida",
+        ],
+        [
+            "El boton sheild es un bonus que lo que hace es solamente por esa ronda",
+            "el daño que deberías recibir vos",
+            "se lo das a tu enemigo. generando el famoso espejito rebotin."
+        ],
+        [
+            "El label Score es el puntaje progresivo",
+            "que se va actualizando cada ronda jugada",
+            "si ganas sumas, si empatas/perdes se mantiene."
+        ],
+        [
+            "El label TIMER es el tiempo de la partida",
+            "donde arranca en 5000 y va disminuyendo",
+        ],
+        [
+            "El ranking es un sistema donde al terminar una partida",
+            "guardas tu nombre con tu puntaje y automáticamente te manda",
+            "al formulario ranking donde aparecen los mejores 10."
+        ],
         ]
     
     form['fondos_tutorial'] = [
-        var.IMAGEN_ENTER_NAME,
-        var.IMAGEN_MENU_PRINCIPAL,
-        var.IMAGEN_BONUS,
-        var.IMAGEN_PAUSE,
-        var.IMAGEN_TUTORIAL,
-        var.IMAGEN_CARTA
-        ]
+        pg.image.load(var.IMAGEN_TUTORIAL).convert(),
+        pg.image.load(var.IMG_HEAL_TUTORIAL).convert(),
+        pg.image.load(var.IMG_SHIELD_TUTORIAL).convert(),
+        pg.image.load(var.IMG_SCORE_TUTORIAL).convert(),
+        pg.image.load(var.IMG_TIMER_TUTORIAL).convert(),
+        pg.image.load(var.IMG_RANKING_TUTORIAL).convert()
+        ]   
 
     form['tutorial'] = Label(
         x=635, y=50, text='TUTORIAL', screen=form.get('screen'), 
         font_path=var.FUENTE_HALIMOUNT, font_size=40, color=var.COLOR_NEGRO)
-    
-    form['lbl_descripcion'] = Label(
-        x=var.DIMENSION_PANTALLA[0] // 2,
-        y=var.DIMENSION_PANTALLA[1] // 2 + 80,
-        text=form['textos_tutorial'][0],
-        screen=form.get('screen'),
-        font_path=var.FUENTE_HALIMOUNT,
-        font_size=28,
-        color=var.COLOR_NEGRO
-    )
     
     form['imglbl_jugar'] = ImageLabel(
         x=580, y=155, text=f'', screen=form.get('screen'), 
@@ -106,7 +118,7 @@ def init_form_tutorial(dict_form_data: dict):
     )
 
     form['widgets_list'] = [
-        form.get('tutorial'), form.get('lbl_descripcion'), form.get('btn_proximo'), form.get('btn_volver'), form.get('btn_previo')
+        form.get('tutorial'), form.get('btn_proximo'), form.get('btn_volver'), form.get('btn_previo')
     ]
 
     base_form.forms_dict[dict_form_data.get('name')] = form
@@ -118,26 +130,30 @@ def click_proximo(form):
 def click_previo(form):
     form['click_previo'] = True
 
-def pagina_siguiente(form):
-    if form['pagina_actual'] < len(form['fondos_tutorial']) - 1:
-        form['pagina_actual'] += 1
-        
-def pagina_previa(form):
-    if form['pagina_actual'] > 0:
-        form['pagina_actual'] -= 1  
+def pagina_siguiente(form_data: dict):
+    if form_data['pagina_actual'] < len(form_data['fondos_tutorial']) - 1:
+        form_data['pagina_actual'] += 1
+
+def pagina_anterior(form_data: dict):
+    if form_data['pagina_actual'] > 0:
+        form_data['pagina_actual'] -= 1
         
 def volver_menu(_):
     base_form.set_active('form_main_menu')
 
 def draw(form_data: dict):
     pagina = form_data['pagina_actual']
-
-    form_data['background'] = pg.image.load(form_data['fondos_tutorial'][pagina]).convert()
-
+    screen = form_data.get('screen')
+    
     base_form.draw(form_data)
+    fondo = form_data['fondos_tutorial'][pagina]
+    screen.blit(
+        pg.transform.scale(fondo, var.DIMENSION_PANTALLA),
+        (0, 0)
+    )
+
     base_form.update_widgets(form_data)
 
-    # dibujar imágenes según página
     if pagina == 0:
         form_data['imglbl_jugar'].draw()
 
@@ -155,6 +171,20 @@ def draw(form_data: dict):
     
     elif pagina == 5:
         form_data['imglbl_ranking'].draw()
+
+    texto_en_y = 300
+    for linea in form_data['textos_tutorial'][pagina]:
+        lbl = Label(
+            x=var.DIMENSION_PANTALLA[0] // 2,
+            y=texto_en_y,
+            text=str(linea),
+            screen=form_data.get('screen'),
+            font_path=var.FUENTE_HALIMOUNT,
+            font_size=24,
+            color=var.COLOR_NEGRO
+        )
+        lbl.draw()
+        texto_en_y += 30
         
 def update(form_data: dict):
     if form_data['click_proximo']:
@@ -166,12 +196,5 @@ def update(form_data: dict):
         if form_data['pagina_actual'] > 0:
             form_data['pagina_actual'] -= 1
         form_data['click_previo'] = False
-
-    pagina = form_data['pagina_actual']
-
-    form_data['lbl_descripcion'].update_text(
-        form_data['textos_tutorial'][pagina],
-        color=var.COLOR_NEGRO
-    )
 
     base_form.update(form_data)

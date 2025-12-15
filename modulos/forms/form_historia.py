@@ -11,28 +11,22 @@ def init_form_historia(dict_form_data: dict):
     form = base_form.create_base_form(dict_form_data)
 
     form['lbl_titulo_juego'] = Label(x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 250, 
-                                     text='DRAGON BALL Z', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=75)
+    text='DRAGON BALL Z', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=75)
     
     form['lbl_titulo_options'] = Label(x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 175, 
-                                       text='OPTIONS', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=50)
+    text='OPTIONS', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=50)
     
     form['boton_volver'] = ButtonImageSound(x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 270,
-                                  width=125, height=40, text='', screen=form.get('screen'), image_path=dict_form_data.get('botones').get('volver'), 
-                                  sound_path=dict_form_data.get('sound_path'), on_click=click_volver, on_click_param='form_main_menu')
-
-    '''
-    form['boton_volver'] = ButtonImageSound(x=635, y=612, width=125, height=40, text='', screen=form.get('screen'), 
-                                            image_path=dict_form_data.get('botones').get('volver'), sound_path=dict_form_data.get('sound_path'),
-                                            font_size=40, on_click=click_return_menu, on_click_param='form_main_menu')
-    ''' 
+    width=125, height=40, text='', screen=form.get('screen'), image_path=dict_form_data.get('botones').get('volver'), 
+    sound_path=dict_form_data.get('sound_path'), on_click=click_volver, on_click_param='form_main_menu')
     
     form['boton_music_on'] = Button(x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 - 30, 
-                                    text='MUSIC ON', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
-                                    font_size=40, on_click=click_volver, on_click_param='music_on') 
+    text='MUSIC ON', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
+    font_size=40, on_click=click_volver, on_click_param='music_on') 
 
     form['boton_music_off'] = Button(x=var.DIMENSION_PANTALLA[0] // 2, y=var.DIMENSION_PANTALLA[1] // 2 + 30, 
-                                     text='MUSIC OFF', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
-                                     font_size=40, on_click=click_volver, on_click_param='music_off') 
+    text='MUSIC OFF', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
+    font_size=40, on_click=click_volver, on_click_param='music_off') 
 
     form['widgets_list'] = [
         form.get('lbl_titulo_juego'), 

@@ -7,6 +7,7 @@ import modulos.forms.form_start_level as form_start_level
 import modulos.forms.form_enter_name as form_enter_name
 import modulos.forms.form_pause as form_pause
 import modulos.forms.form_bonus as form_bonus
+import modulos.forms.form_tutorial as form_tutorial
 
 def create_form_manager(screen: pg.Surface, datos_juego: dict):
 
@@ -84,8 +85,13 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "sound_path": var.RUTA_SONIDO_CLICK,
                 "background_path": var.IMAGEN_CARTA,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
-                "jugador": form.get('jugador')
-                }
+                "jugador": form.get('jugador'),
+                "botones": {
+                    "play_hand": var.BOTON_PLAYHAND,
+                    "shield": var.BOTON_SHIELD,
+                    "heal": var.BOTON_HEAL,
+                },
+            },
         ),
         form_enter_name.init_form_enter_name(
             dict_form_data={
@@ -125,7 +131,20 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "background_path": var.IMAGEN_BONUS,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
             }, jugador=form.get('jugador')
-       )
+       ),
+       form_tutorial.init_form_tutorial(
+            dict_form_data={
+                "name":'form_tutorial', 
+                "screen":form.get('main_screen'), 
+                "active":True, 
+                "coords":(0,0), 
+                "stage_number":1, 
+                "music_path":var.RUTA_MUSICA_MENU,
+                "sound_path": var.RUTA_SONIDO_CLICK,
+                "background_path": var.IMAGEN_TUTORIAL,
+                "screen_dimentions": var.DIMENSION_PANTALLA,
+                }
+       )        
     ]
     return form 
 
@@ -162,6 +181,10 @@ def forms_update(form_manager: dict, lista_eventos: pg.event.Event):
     elif form_manager.get('form_list')[6].get('active'):
         form_bonus.update(form_manager.get('form_list')[6])
         form_bonus.draw(form_manager.get('form_list')[6])
+
+    elif form_manager.get('form_list')[7].get('active'):
+        form_tutorial.update(form_manager.get('form_list')[7])
+        form_tutorial.draw(form_manager.get('form_list')[7])
         
 def update(form_manager: dict, lista_eventos: pg.event.Event):
     forms_update(form_manager, lista_eventos)

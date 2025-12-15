@@ -15,28 +15,26 @@ def init_form_ranking(dict_form_data: dict, jugador: dict):
 
     form['ranking_screen'] = []
     form['ranking_list'] = []
+    form['data_cargada'] = False
 
     form['lbl_titulo'] = Label(x=635, y=105, text='DRAGON BALL Z TCG', screen=form.get('screen'), 
-                               font_path=var.FUENTE_HALIMOUNT, font_size=75, color=var.COLOR_BLANCO)
+    font_path=var.FUENTE_HALIMOUNT, font_size=75, color=var.COLOR_BLANCO)
 
     form['lbl_subtitulo'] = Label(x=635, y=195, text='TOP 10 RANKING', screen=form.get('screen'), 
-                                  font_path=var.FUENTE_HALIMOUNT, font_size=55, color=var.COLOR_BLANCO)
+    font_path=var.FUENTE_HALIMOUNT, font_size=55, color=var.COLOR_BLANCO)
 
     form['boton_volver'] = ButtonImageSound(x=635, y=612, width=125, height=40, text='', screen=form.get('screen'), 
-                                            image_path=dict_form_data.get('botones').get('volver'), sound_path=dict_form_data.get('sound_path'),
-                                            font_size=40, on_click=click_return_menu, on_click_param='form_main_menu')
+    image_path=dict_form_data.get('botones').get('volver'), sound_path=dict_form_data.get('sound_path'),
+    font_size=40, on_click=click_return_menu, on_click_param='form_main_menu')
     
-    form['data_cargada'] = False
     form['widgets_list'] = [
         form.get('lbl_titulo'), form.get('lbl_subtitulo'), form.get('boton_volver')
     ]
 
     base_form.forms_dict[dict_form_data.get('name')] = form
-
     return form
 
 def click_return_menu(parametro: str):
-    print('asdasdasdasdsa')
     base_form.stop_music()
     base_form.play_music(base_form.forms_dict[parametro])
     base_form.set_active(parametro)

@@ -8,7 +8,7 @@ import modulos.forms.form_bonus as form_bonus
 import modulos.carta as carta_jugador
 import participante as participante_juego
 from utn_fra.pygame_widgets import (
-    Button, Label, ImageLabel
+    Button, Label, ImageLabel, ButtonImageSound
 )
 
 def init_form_start_level(dict_form_data: dict):
@@ -35,56 +35,57 @@ def init_form_start_level(dict_form_data: dict):
      
     form['lbl_score'] = Label(
         x=105, y=35, text=f'Score: 0', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=45, color=var.COLOR_BLANCO)
+        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
+        font_size=45, color=var.COLOR_BLANCO)
 
     form['lbl_carta_e'] = Label(
         x=195, y=215, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=20)
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=20)
     
     form['lbl_carta_p'] = Label(
         x=195, y=550, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=20)
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=20)
     
     # ============ LBL ENEMIGO ============ #
     
     form['lbl_enemigo_hp'] = Label(
         x=175, y=190, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_enemigo_atk'] = Label(
         x=135, y=230, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_enemigo_def'] = Label(
         x=240, y=230, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     # ============ LBL JUGADOR ============ #
 
     form['lbl_jugador_hp'] = Label(
         x=190, y=520, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_jugador_atk'] = Label(
         x=140, y=555, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_jugador_def'] = Label(
         x=240, y=555, 
-        text=f'', 
-        screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=25
+        text=f'', screen=form.get('screen'), 
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
     form['lbl_heal'] = ImageLabel(
@@ -95,21 +96,26 @@ def init_form_start_level(dict_form_data: dict):
 
     # ============ BOTONES ============ #
 
-    form['btn_bonus_1'] = Button(
+    form['btn_bonus_1'] = ButtonImageSound(
         x=var.DIMENSION_PANTALLA[0] // 2 + 560, y=var.DIMENSION_PANTALLA[1] // 2 + 220,
-        text='Shield', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=40,
-        color=var.COLOR_NEGRO, on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'SCORE X3'} 
+        width=125, height=45,text='', screen=form.get('screen'), 
+        image_path=dict_form_data.get('botones').get('shield'), sound_path=var.RUTA_SONIDO_CLICK,
+        on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'SCORE X3'} 
     )
 
-    form['btn_bonus_2'] = Button(
+    form['btn_bonus_2'] = ButtonImageSound(
         x=var.DIMENSION_PANTALLA[0] // 2 + 560, y=var.DIMENSION_PANTALLA[1] // 2 + 270,
-        text='Heal', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=40,
-        color=var.COLOR_NEGRO, on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'HEAL'} 
+        width=125, height=45, text='', screen=form.get('screen'),
+        image_path=dict_form_data.get('botones').get('heal'), sound_path=var.RUTA_SONIDO_CLICK,
+        on_click=call_bonus_form, on_click_param={'form': form, 'bonus': 'HEAL'} 
     )
 
-    form['btn_play'] = Button(
-        x=var.DIMENSION_PANTALLA[0] // 2 + 560, y= var.DIMENSION_PANTALLA[1] // 2 + 30, 
-        text="PLAY HAND",screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=35,
+    form['btn_play'] = ButtonImageSound(
+        x=var.DIMENSION_PANTALLA[0] // 2 + 560, 
+        y=var.DIMENSION_PANTALLA[1] // 2 + 25, 
+        width=130, height=55, text="", screen=form.get('screen'), 
+        image_path=dict_form_data.get('botones').get('play_hand'), 
+        sound_path=var.RUTA_SONIDO_CLICK,
         on_click=jugar_mano, on_click_param=form
     )
 

@@ -34,17 +34,6 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
 
     nivel_data['cantidad_cartas_jugadores'] = 10
 
-    print("Jugador mazo:", len(nivel_data['jugador']['cartas_mazo']))
-    print("Enemigo mazo:", len(nivel_data['enemigo']['cartas_mazo']))
-
-    print("Cartas enemigo:", len(nivel_data['enemigo']['cartas_asignadas']))
-
-    # for carta in nivel_data['enemigo']['cartas_mazo']:
-    #     # print('path reverso:', carta.get('path_imagen_reverso'))
-    #     continue
-
-    # draw_jugadores(nivel_data)
-
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_inicial', nivel_data['coords_iniciales_enemigo'])
     participante.setear_stat_participante(nivel_data['enemigo'], 'pos_deck_jugado', nivel_data['coords_finales_enemigo'])
 
@@ -115,9 +104,6 @@ def asignar_cartas_stage(nivel_data: dict, participantes: dict):
     cantidad_cartas = nivel_data.get('cantidad_cartas_jugadores')
     cartas_panticipante = rd.sample(nivel_data.get('cartas_mazo_preparadas'), cantidad_cartas)
     participante.set_cartas_participante(participantes,cartas_panticipante)
-
-    print(f"[DEBUG] {participantes['nombre']} cartas_asignadas: {len(participantes['cartas_asignadas'])}")
-    print(f"[DEBUG] {participantes['nombre']} cartas_mazo: {len(participantes['cartas_mazo'])}")
     
 def generar_mazo(nivel_data: dict): 
     print('=============== GENERANDO MAZO FINAL ===============')

@@ -43,6 +43,8 @@ IMAGEN_PAUSE = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Bal
 
 IMAGEN_CARTA = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/background_cards.png'
 
+IMAGEN_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/fondo_tutorial_2.png'
+
 # ------- VIDAS --------
 
 CANTIDAD_VIDAS = 3
@@ -96,8 +98,20 @@ BOTON_SALIR = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball
 
 BOTON_VOLVER = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_volver.png'
 
+BOTON_PLAYHAND = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/btn_play_hand.png'
+
+BOTON_SHIELD = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/shield.png'
+
+BOTON_HEAL= 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/heal.png'
+
 # ------ BOTONES ICON ------
 
 BOTON_ICON_HEAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/icon_heal.png'
 
 BOTON_ICON_SHIELD = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/button/icon_shield.png'
+
+# ------ BOTONES TUTO ------
+
+IMAGEN_SCORE_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/score.png'
+
+IMAGEN_TIMER_TUTORIAL = 'E:/UTN/UTN/Segundo cuatrimestre/Programacion I/assets_Dragon_Ball_Trading_Card_Game/assets_Dragon_Ball_Trading_Card_Game/PYGAME/img/timer.png'

@@ -5,7 +5,7 @@ import modulos.nivel_cartas as nivel_cartas
 import modulos.variables as var
 import participante as participante
 from utn_fra.pygame_widgets import (
-     Label, ButtonImageSound, TextPoster
+     Label, ButtonImageSound, TextPoster, Button
 )
 
 # def init_form_main_menu(name: str, screen: pg.Surface, active: bool, coords: tuple[int, int], level_num: int) -> dict:
@@ -27,12 +27,16 @@ def init_form_main_menu(dict_form_data: dict):
         font_size=35, on_click=cambiar_formulario_on_click, on_click_param='form_start_level') 
 
     form['boton_historia'] = ButtonImageSound(
-        x=645, y=437, width=126, height=33,text='', screen=form.get('screen'), 
+        x=645, y=427, width=126, height=33,text='', screen=form.get('screen'), 
         image_path=dict_form_data.get('botones').get('historia'),sound_path=dict_form_data.get('sound_path'), 
         font_size=35, on_click=cambiar_formulario_on_click, on_click_param='form_historia') 
     
+    form['boton_tutorial'] = Button(
+        x=645, y=475,text='TUTORIAL', screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, 
+        color=var.COLOR_NARANJA ,font_size=35, on_click=cambiar_formulario_on_click, on_click_param='form_tutorial')
+
     form['boton_ranking'] = ButtonImageSound(
-        x=645, y=510, width=126, height=33,text='', screen=form.get('screen'), 
+        x=645, y=520, width=126, height=33,text='', screen=form.get('screen'), 
         image_path=dict_form_data.get('botones').get('ranking'), sound_path=dict_form_data.get('sound_path'), 
         font_size=35, on_click=cambiar_formulario_on_click, on_click_param='form_ranking')
 
@@ -43,16 +47,14 @@ def init_form_main_menu(dict_form_data: dict):
 
     form['widgets_list'] = [
         form.get('label_titulo'), form.get('label_main_menu'), form.get('boton_jugar'), 
-        form.get('boton_historia'), form.get('boton_ranking'), form.get('boton_salir')
+        form.get('boton_historia'), form.get('boton_tutorial'), form.get('boton_ranking'), form.get('boton_salir')
     ]
 
     base_form.forms_dict[dict_form_data.get('name')] = form
-
     return form
 
 def iniciar_stage(form_name: str):
     cambiar_formulario_on_click(form_name)
-    # stage_form = var.
 
 def cambiar_formulario_on_click(parametro: str):
     base_form.set_active(parametro)
@@ -66,7 +68,7 @@ def cambiar_formulario_on_click(parametro: str):
             pantalla=form_start_level.get('screen'),
             nombre='Jugador'
         )
-        form_start_level['level'] = nivel_cartas.reiniciar_nivel(          # puede ser None y NO hay problema
+        form_start_level['level'] = nivel_cartas.reiniciar_nivel(
             form_start_level['jugador'],
             form_start_level['screen'],
             form_start_level['level_number']

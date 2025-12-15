@@ -42,6 +42,10 @@ def update_widgets(form_data: dict):
     for widget in form_data.get('widgets_list'):
         widget.update()
 
+# def update_widgets_lbl(form_data: dict):
+#     for widget in form_data.get('widgets_list_img_lbl'):
+#         widget.update([])
+
 def draw_widgets(form_data: dict):
     for widget in form_data.get('widgets_list'):
         widget.draw()

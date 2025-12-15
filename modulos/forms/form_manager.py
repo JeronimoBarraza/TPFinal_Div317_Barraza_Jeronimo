@@ -16,6 +16,7 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
     form['current_level'] = 1
     form['game_started'] = False
     form['enemy'] = None
+    form['music_on'] = datos_juego.get('music_on')
 
     form['jugador'] = datos_juego.get('player')
 
@@ -50,6 +51,7 @@ def create_form_manager(screen: pg.Surface, datos_juego: dict):
                 "sound_path": var.RUTA_SONIDO_CLICK,
                 "background_path": var.IMAGEN_OPTIONS,
                 "screen_dimentions": var.DIMENSION_PANTALLA,
+                "music_on": form.get('music_on'),
                 "botones": {
                     "music_on": '',
                     "music_off": '',

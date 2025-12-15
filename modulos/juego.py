@@ -18,6 +18,7 @@ def pythonisa():
         "player": participante.inicializaar_participante(pantalla, 'jugador'),
         "volumen_musica": 100,
         "tiempo_finalizado": None,
+        "music_on": True
     }
 
     f_manager = form_manager.create_form_manager(pantalla, datos_juego)

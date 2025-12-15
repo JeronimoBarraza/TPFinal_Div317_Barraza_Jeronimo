@@ -205,19 +205,17 @@ def update_lbls_cards_info(dict_form_data: dict):
         ultima_carta_e = participante_juego.get_carta_actual_participante(dict_form_data.get('level').get('enemigo'))
 
 def update_lbls_participantes(dict_form_data: dict, tipo_participante: str):
+    participante_enemigo = dict_form_data.get('level').get('enemigo')
+
+    dict_form_data[f'lbl_enemigo_hp'].update_text(text=f'HP: {participante_juego.get_hp_participante(participante_enemigo)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_enemigo_atk'].update_text(text=f'ATK: {participante_juego.get_attack_inicial_participante(participante_enemigo)}', color=var.COLOR_BLANCO)
+    dict_form_data[f'lbl_enemigo_def'].update_text(text=f'DEF: {participante_juego.get_defense_participante(participante_enemigo)}', color=var.COLOR_BLANCO)
+
     participante_jugador = dict_form_data.get('level').get('jugador')
-
-    dict_form_data[f'lbl_enemigo_hp'].update_text(text=f'HP: {participante_juego.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_enemigo_atk'].update_text(text=f'ATK: {participante_juego.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-    dict_form_data[f'lbl_enemigo_def'].update_text(text=f'DEF: {participante_juego.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-
-    participante_jugador = dict_form_data.get('level').get('enemigo')
-
+    
     dict_form_data[f'lbl_jugador_hp'].update_text(text=f'HP: {participante_juego.get_hp_participante(participante_jugador)}', color=var.COLOR_BLANCO)
     dict_form_data[f'lbl_jugador_atk'].update_text(text=f'ATK: {participante_juego.get_attack_inicial_participante(participante_jugador)}', color=var.COLOR_BLANCO)
     dict_form_data[f'lbl_jugador_def'].update_text(text=f'DEF: {participante_juego.get_defense_participante(participante_jugador)}', color=var.COLOR_BLANCO)
-
-    # print("[DEBUG LABEL] Leyendo HP en labels:", participante_jugador.get("hp_actual"))
 
 def actualizar_puntaje(dict_form_data: dict):
     participante = dict_form_data.get('level').get('jugador')

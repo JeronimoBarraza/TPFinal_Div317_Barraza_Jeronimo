@@ -219,6 +219,10 @@ def chequear_ganador(nivel_data):
         (hay_tiempo_disponible and enemigo_sin_cartas)):
         setear_ganador(nivel_data, jugador)
 
+    elif hay_tiempo_disponible == 0:
+        setear_ganador(nivel_data, enemigo)
+
+
 def esta_finalizado(nivel_data: dict) -> bool:
     return nivel_data.get('juego_finalizado')
 

@@ -38,8 +38,8 @@ def init_form_pause(dict_form_data: dict):
     return form
 
 def click_change_form(param: str):
-    base_form.stop_music()
-    base_form.play_music(base_form.forms_dict[param])
+    base_form.music_off(base_form.forms_dict[param])
+    base_form.music_on(base_form.forms_dict[param])
     aux.cambiar_formulario_on_click(param)
 
 def draw(form_dict: dict):

@@ -26,14 +26,6 @@ def create_base_form(dict_form_data: dict) -> dict:
     form['music_on'] = dict_form_data.get('music_on')
     return form
 
-# def play_music(form_dict: dict):
-#     pg.mixer.music.load(form_dict.get('music_path'))
-#     pg.mixer.music.set_volume(0.4)
-#     pg.mixer.music.play(loops=-1, fade_ms= 400)
-
-# def stop_music():
-#     pg.mixer.music.stop()
-
 def music_on(dict_form_data: dict):
     if not dict_form_data.get('music_on'):
         ruta_musica = dict_form_data.get('music_path')

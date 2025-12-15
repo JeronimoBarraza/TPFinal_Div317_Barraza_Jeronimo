@@ -35,9 +35,10 @@ def init_form_ranking(dict_form_data: dict, jugador: dict):
     return form
 
 def click_return_menu(parametro: str):
-    base_form.stop_music()
-    base_form.play_music(base_form.forms_dict[parametro])
+    base_form.music_off(base_form.forms_dict[parametro])
     base_form.set_active(parametro)
+    base_form.music_on(base_form.forms_dict[parametro])
+
     base_form.forms_dict['form_ranking']['data_loaded'] = False
 
 def init_ranking(form_data: dict):

@@ -191,8 +191,8 @@ def events_handler(event_list: list[pg.event.Event]):
         if evento.type == pg.KEYDOWN:
             if evento.key == pg.K_ESCAPE:
                 base_form.set_active('form_pause')
-                base_form.stop_music()
-                base_form.play_music(base_form.forms_dict['form_pause'])
+                base_form.music_on(base_form.forms_dict['form_pause'])
+                base_form.music_off(base_form.forms_dict['form_pause'])
         if evento.type == pg.MOUSEBUTTONDOWN:
             print(evento.pos)
 

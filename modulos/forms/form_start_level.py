@@ -90,7 +90,13 @@ def init_form_start_level(dict_form_data: dict):
 
     form['lbl_heal'] = ImageLabel(
         x=1130, y=175, text=f'', screen=form.get('screen'), 
-        image_path=var.BOTON_ICON_HEAL, width=60, height=60,
+        image_path=var.BOTON_ICON_HEAL, width=65, height=65,
+        font_path=var.FUENTE_HALIMOUNT, font_size=25
+    )
+
+    form['lbl_shield'] = ImageLabel(
+        x=1200, y=175, text=f'', screen=form.get('screen'), 
+        image_path=var.BOTON_ICON_SHIELD, width=65, height=65,
         font_path=var.FUENTE_HALIMOUNT, font_size=25
     )
 
@@ -167,14 +173,10 @@ def verificar_terminado(dict_form_data: dict):
         enter_name.update_texto_victoria(form_enter_name, win_status)
         base_form.set_active('form_enter_name') 
 
-def call_bonus_form(params: dict):
-
-    level = params['form'].get('level')
-    level['lbl_heal_used'] = True
-    level['heal_available'] = False
-    
+def call_bonus_form(params: dict):  
     dict_form_data = params.get('form')
     bonus_info = params.get('bonus')
+    level = params['form'].get('level')
 
     bonus_form = base_form.forms_dict.get('form_bonus')
     form_bonus.update_button_bonus(bonus_form, bonus_info)
@@ -240,6 +242,16 @@ def update_bonus_widgets(dict_form_data: dict):
     if level.get('shield_available'):
         widget_bonus[0].update()
 
+def draw_icon_shield(dict_form_data):
+    level = dict_form_data.get('level')
+    if level.get('lbl_shield_used'):
+        dict_form_data.get('lbl_shield').draw()
+
+def update_icon_shield(dict_form_data): 
+    level = dict_form_data.get('level')
+    if level.get('lbl_shield_used'):
+        dict_form_data.get('lbl_shield').update([])
+
 def draw_icon_heal(dict_form_data):
     level = dict_form_data.get('level')
     if level.get('lbl_heal_used'):
@@ -256,6 +268,7 @@ def draw(dict_form_data: dict):
     base_form.draw_widgets(dict_form_data)
     draw_bonus_widgets(dict_form_data)
     draw_icon_heal(dict_form_data)
+    draw_icon_shield(dict_form_data)
 
 def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     dict_form_data['lbl_clock'].update_text(f'TIME LEFT: {nivel_cartas.obtener_tiempo(dict_form_data.get('level'))}', color=var.COLOR_BLANCO)
@@ -268,6 +281,7 @@ def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     update_lbls_participantes(dict_form_data, tipo_participante='enemigo')
     update_bonus_widgets(dict_form_data)
     update_icon_heal(dict_form_data)
+    update_icon_shield(dict_form_data)
     verificar_terminado(dict_form_data)
     
     events_handler(cola_eventos)

@@ -59,6 +59,14 @@ def inicializar_nivel_cartas(jugador: dict, pantalla: pg.Surface, num_nivel: int
 def modificar_estado_bonus(nivel_data: dict, bonus: str):
     nivel_data[f'{bonus}_available'] = False
 
+    if bonus == 'HEAL':
+        nivel_data['heal_available'] = False
+        nivel_data['lbl_heal_used'] = True
+
+    elif bonus == 'SCORE X3':
+        nivel_data['shield_available'] = False
+        nivel_data['lbl_shield_used'] = True
+
 def actualizar_timer(nivel_data: dict):
     if nivel_data['level_timer'] > 0:
         tiempo_actual = pg.time.get_ticks()

@@ -48,9 +48,7 @@ def init_form_bonus(dict_form_data: dict, jugador: dict):
 
 def click_change_form(form_enter_name: str):
     aux.cambiar_formulario_on_click(form_enter_name)
-    # base_form.stop_music()
-    # base_form.play_music(base_form.forms_dict[param])
-
+   
 def click_select_bonus(dict_form_data: dict):
     bonus_info = dict_form_data.get('bonus_info')
     jugador = dict_form_data.get('jugador')
@@ -60,8 +58,8 @@ def click_select_bonus(dict_form_data: dict):
 
     if bonus_info == 'HEAL':
         bonus = 'HEAL'
-    else:
-        bonus = 'SHIELD'
+    elif bonus_info == 'SCORE X3':
+        bonus = 'SCORE X3'
 
     nivel_cartas.modificar_estado_bonus(level, bonus)
 

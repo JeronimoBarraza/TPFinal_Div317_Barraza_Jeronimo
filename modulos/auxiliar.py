@@ -18,7 +18,6 @@ def crear_lista_botones(cantidad: int, dimension: tuple, color: str = 'black'):
         lista_botones.append(boton)
     return lista_botones
 
-
 def mostrar_texto(surface: pg.Surface, texto: str, pos: tuple, font: str, color: str = 'white'):
     words = []
 
@@ -67,10 +66,10 @@ def mostrar_boton(boton_dict):
 
 def mostrar_texto_multilinea(superficie, texto: str, posicion, fuente, color):
     x, y = posicion
-    for linea in texto.splitlines():  # divide por \n
+    for linea in texto.splitlines(): # divide por \n
         superficie_texto = fuente.render(linea, True, color)
         superficie.blit(superficie_texto, (x, y))
-        y += superficie_texto.get_height() + 5  # 5 píxeles entre líneas
+        y += superficie_texto.get_height() + 5 # 5 píxeles entre líneas
 
 def parsear_entero(valor: str):
     if valor.isdigit():

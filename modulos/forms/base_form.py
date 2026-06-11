@@ -1,0 +1,63 @@
+import pygame as pg
+import modulos.variables as var
+import modulos.sonido as sonido
+
+forms_dict = {}
+
+def create_base_form(dict_form_data: dict) -> dict:
+
+    form = {}
+    form['name'] = dict_form_data.get('name')
+    form['jugador'] = dict_form_data.get('jugador')
+    form['screen'] = dict_form_data.get('screen')
+    form['active'] = dict_form_data.get('active')
+    form['x_coord'] = dict_form_data.get('coords')[0]
+    form['y_coord'] = dict_form_data.get('coords')[1]
+    form['level_number'] = dict_form_data.get('stage_number')
+
+    form['music_path'] = dict_form_data.get('music_path')
+    form['surface'] = pg.image.load(dict_form_data.get('background_path')).convert_alpha()
+    form['surface'] = pg.transform.scale(form.get('surface'), dict_form_data.get('screen_dimentions'))
+    
+    form['rect'] = form.get('surface').get_rect()
+    form['rect'].x = dict_form_data.get('coords')[0]
+    form['rect'].y = dict_form_data.get('coords')[1]
+    form['music_on'] = dict_form_data.get('music_on')
+    return form
+
+def music_on(dict_form_data: dict):
+    if not dict_form_data.get('music_on'):
+        ruta_musica = dict_form_data.get('music_path')
+        dict_form_data['music_on'] = True
+        sonido.set_music(ruta_musica)
+        sonido.play_music()
+
+def music_off(dict_form_data: dict):
+    if dict_form_data.get('music_on'):
+        dict_form_data['music_on'] = False
+        sonido.stop_music()
+
+def set_active(name: str):    
+    for form in forms_dict.values():
+        form['active'] = False
+
+    form_activo = forms_dict[name]
+    form_activo['active'] = True
+
+    music_off(form_activo)
+    music_on(form_activo)
+
+def update_widgets(form_data: dict):
+    for widget in form_data.get('widgets_list'):
+        widget.update()
+
+def draw_widgets(form_data: dict):
+    for widget in form_data.get('widgets_list'):
+        widget.draw()
+
+def draw(form_data: dict):
+    form_data['screen'].blit(form_data.get('surface'), form_data.get('rect'))
+    
+def update(form_data: dict):    
+    update_widgets(form_data)
+    

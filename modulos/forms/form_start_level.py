@@ -37,7 +37,7 @@ def init_form_start_level(dict_form_data: dict):
     
     form['lbl_cant_cartas'] = Label(
         x=var.DIMENSION_PANTALLA[0] // 2 - 530, y=365, 
-        text=f'CANTIDAD CARTAS RESTANTES: ',
+        text=f'CANTIDAD CARTAS RESTANTES: {form['level']['cantidad_cartas_jugadores']}',
         screen=form.get('screen'), font_path=var.FUENTE_HALIMOUNT, font_size=20, color=var.COLOR_BLANCO) 
     
     form['lbl_carta_e'] = Label(
@@ -194,6 +194,14 @@ def events_handler(event_list: list[pg.event.Event]):
                 base_form.music_off(base_form.forms_dict['form_pause'])
         if evento.type == pg.MOUSEBUTTONDOWN:
             print(evento.pos)
+            
+def update_cant_cartas(dict_form_data: dict):
+    jugador = dict_form_data.get('level').get('jugador')
+    cantidad_cartas = len(jugador.get('cartas_mazo'))
+    
+    dict_form_data['lbl_cant_cartas'].update_text(
+        text=f'CANTIDAD CARTAS RESTANTES: {cantidad_cartas}',
+        color=var.COLOR_BLANCO)            
 
 def update_lbls_cards_info(dict_form_data: dict):
     mazo_enemigo = dict_form_data.get('level').get('enemigo').get('cartas_mazo_usadas')
@@ -274,6 +282,7 @@ def update(dict_form_data: dict, cola_eventos: list[pg.event.Event]):
     nivel_cartas.update(dict_form_data.get('level'))
     update_lbls_cards_info(dict_form_data)
     update_lbls_participantes(dict_form_data, tipo_participante='jugador')
+    update_cant_cartas(dict_form_data)
     actualizar_puntaje(dict_form_data)
     update_lbls_participantes(dict_form_data, tipo_participante='enemigo')
     update_bonus_widgets(dict_form_data)

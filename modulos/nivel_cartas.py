@@ -148,9 +148,7 @@ def hay_jugadores_con_cartas(nivel_data: dict):
 def reiniciar_nivel(jugador: dict, pantalla: pg.Surface, num_nivel: int):
     
     nivel_data = inicializar_nivel_cartas(jugador, pantalla, num_nivel)
-
     participante.reiniciar_datos_participante(nivel_data["jugador"])
-
     return nivel_data
 
 def juego_terminado(nivel_data: dict):
@@ -228,7 +226,6 @@ def chequear_ganador(nivel_data):
     elif hay_tiempo_disponible == 0:
         setear_ganador(nivel_data, enemigo)
 
-
 def esta_finalizado(nivel_data: dict) -> bool:
     return nivel_data.get('juego_finalizado')
 
@@ -242,9 +239,11 @@ def jugar_mano(nivel_data:dict):
         critical, ganador_mano = comparar_damage(nivel_data)
         return critical, ganador_mano
     return None
-'''
+
 def restar_cantidad_cartas(nivel_data:dict): 
-''' 
+    if nivel_data['cantidad_cartas_jugadores'] > 0:
+        nivel_data['cantidad_cartas_jugadores'] -= 1
+    return nivel_data['cantidad_cartas_jugadores']
 
 def draw_jugadores(nivel_data: dict):
     participante.draw_participante(nivel_data['jugador'], nivel_data['screen'])
@@ -253,3 +252,4 @@ def draw_jugadores(nivel_data: dict):
 def update(nivel_data: dict):
     actualizar_timer(nivel_data)
     chequear_ganador(nivel_data)
+    

@@ -84,15 +84,15 @@ def click_select_bonus(dict_form_data: dict):
 
     click_change_form('form_start_level')
  
-def update_button_bonus(dict_form_data: dict, bonus_info: str):
-    dict_form_data['bonus_info'] = bonus_info
-    dict_form_data.get('widgets_list')[2].update_text(dict_form_data.get('bonus_info'), var.COLOR_NEGRO)
+def update_button_bonus(form: dict, bonus_info: str):
+    form['bonus_info'] = bonus_info
+    form.get('widgets_list')[2].update_text(form.get('bonus_info'), var.COLOR_NEGRO)
     
-def update(dict_form_data: dict):
-    base_form.update(dict_form_data)
+def update(form: dict):
+    base_form.update(form)
 
-def draw(dict_form_data: dict):
-    base_form.draw(dict_form_data)
-    base_form.draw_widgets(dict_form_data)
+def draw(form: dict):
+    base_form.draw(form)
+    base_form.draw_widgets(form)
 
 

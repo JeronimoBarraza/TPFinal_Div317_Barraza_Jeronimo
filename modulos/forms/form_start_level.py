@@ -16,9 +16,7 @@ def init_form_start_level(dict_form_data: dict):
     form = base_form.create_base_form(dict_form_data)
 
     form['jugador'] = dict_form_data.get('jugador')
-
     form['actual_level'] = 1
-
     form['level'] = nivel_cartas.inicializar_nivel_cartas(form.get('jugador'), form.get('screen'), form.get('num_nivel'))
     
     form['clock'] = pg.time.Clock()
@@ -160,8 +158,7 @@ def verificar_terminado(dict_form_data: dict):
         print('EL JUEGO ESTÁ TERMINADO')
 
         if participante_juego.get_nombre_participante(
-            nivel_cartas.obtner_ganador(nivel)
-        ) == 'enemigo':
+            nivel_cartas.obtner_ganador(nivel)) == 'enemigo':
             win_status = False
         else:
             win_status = True
@@ -171,9 +168,7 @@ def verificar_terminado(dict_form_data: dict):
         base_form.set_active('form_enter_name') 
 
 def call_bonus_form(params: dict):  
-    dict_form_data = params.get('form')
     bonus_info = params.get('bonus')
-    level = params['form'].get('level')
 
     bonus_form = base_form.forms_dict.get('form_bonus')
     form_bonus.update_button_bonus(bonus_form, bonus_info)
@@ -196,7 +191,7 @@ def events_handler(event_list: list[pg.event.Event]):
             print(evento.pos)
             
 def update_cant_cartas(dict_form_data: dict):
-    jugador = dict_form_data.get('level').get('jugador')
+    jugador = dict_form_data.get('jugador')
     cantidad_cartas = len(jugador.get('cartas_mazo'))
     
     dict_form_data['lbl_cant_cartas'].update_text(

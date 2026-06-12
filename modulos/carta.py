@@ -3,15 +3,6 @@ import pygame as pg
 import random as rd
 import modulos.auxiliar as aux
 
-"""
-"id": "assets/decks/blue_deck_expansion_1-['1', 'HP', '2450', 'ATK', '2950', 'DEF', '1650', '3.png']",
-"atk": 2950,
-"def": 1650,
-"hp": 2450,
-"path_imagen_frente": "assets/decks/blue_deck_expansion_1\\1_HP_2450_ATK_2950_DEF_1650_3.png",
-"path_imagen_reverso": "assets/decks/blue_deck_expansion_1\\reverse.png"
-"""
-
 def inicializar_carta(carta_dict: dict, coordenadas: tuple[int, int]) -> dict:     
     carta_dict_final = {}
     carta_dict_final = carta_dict  

@@ -11,7 +11,6 @@ def parsear_entero(valor: str):
     return valor
 
 def mapear_valores(matriz: list[list], indice_a_aplicar: int, callback):
-
     for indice_fila in range(len(matriz)):
         valor = matriz[indice_fila][indice_a_aplicar]
         matriz[indice_fila][indice_a_aplicar] = callback(valor)
@@ -25,7 +24,7 @@ def cargar_ranking():
                 ranking.append(linea.split(','))
 
     mapear_valores(ranking, 1, parsear_entero)
-    ranking = ranking[5:]
+    ranking = ranking[3:]
     ranking.sort(key=lambda fila: fila[1], reverse=True)
     return ranking
 

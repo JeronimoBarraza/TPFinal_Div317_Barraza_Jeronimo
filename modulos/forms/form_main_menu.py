@@ -59,7 +59,6 @@ def cambiar_formulario_on_click(parametro: str):
     base_form.set_active(parametro)
     
     if parametro == 'form_start_level':
-
         form_start_level = base_form.forms_dict[parametro]
 
         if form_start_level.get('jugador') is None:
@@ -91,4 +90,3 @@ def draw(form_data: dict):
 
 def update(form_data: dict):
     base_form.update(form_data)
-

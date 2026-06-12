@@ -14,7 +14,6 @@ def init_form_ranking(dict_form_data: dict, jugador: dict):
 
     form['ranking_screen'] = []
     form['ranking_list'] = []
-    form['data_cargada'] = False
 
     form['lbl_titulo'] = Label(x=635, y=105, text='DRAGON BALL Z TCG', screen=form.get('screen'), 
     font_path=var.FUENTE_HALIMOUNT, font_size=75, color=var.COLOR_BLANCO)

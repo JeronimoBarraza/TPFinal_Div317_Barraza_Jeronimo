@@ -24,6 +24,9 @@ def inicializaar_participante(pantalla: pg.Surface, nombre: str = 'PC'):
     
     return participante
 
+def get_cantidad_cartas_restantes(participante: dict):
+    return len(participante.get('cartas_mazo'))
+
 def get_hp_inicial_participante(participante: dict):
     """ Retonarmos el hp inicial del participante en cuestión
 
@@ -77,7 +80,7 @@ def get_defense_participante(participante: dict):
     return participante.get('defense')
 
 def get_nombre_participante(participante: str):
-    """ Retonarmos el el nombre del participante
+    """ Retonarmos el nombre del participante
 
     Args:
         participante (dict): Le pasamos el diccionario
